@@ -20,10 +20,10 @@ class euler
             std::cout << pattern;
         }
     private:
-        float calculate_a_b()
+        float a;
+        float b;
+        float calculate_a_and_b()
         {
-            float a;
-            float b;
             if (pattern == SQUARE)
             {
                 a = pitch/diameter;
@@ -43,6 +43,19 @@ class euler
             {
                 a = 0.866*pitch/diameter;
                 b = pitch/diameter;
+            }
+        }
+        bool check_boundary()
+        {
+            if (pattern == TRIANGULAR || pattern == SQUARE45) //boundary check: staggered
+            {
+                //checking for a/b vs. k1 graph
+                float a_b = a/b;
+                if ()
+            }
+            else //boundary check: square
+            {
+
             }
         }
     };
