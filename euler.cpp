@@ -18,12 +18,13 @@ class euler
             Re = j;
         }
         void printme(){
-            std::cout << pattern;
+            //test stuff
         }
     private:
         float a;
         float b;
-        float calculate_a_and_b()
+        float a_b;
+        void calculate_a_and_b()
         {
             if (pattern == SQUARE)
             {
@@ -45,6 +46,7 @@ class euler
                 a = 0.866f*pitch/diameter;
                 b = pitch/diameter;
             }
+            a_b = a/b;
         }
         bool checkBoundary()
         {
@@ -52,7 +54,6 @@ class euler
             if (pattern == TRIANGULAR || pattern == SQUARE45) //boundary check: staggered
             {
                 //checking for a/b vs. k1 graph:
-                float a_b = a/b;
                 if(Re < 100) //assume it's just 1
                 {
                     //if a/b > 1.25 and Re < 100 it's out of bounds b/c no data for this region
@@ -61,13 +62,9 @@ class euler
                         return_value = false;
                     }
                 }
-                if(Re >= 100 && Re <= 1000)
+                else if (Re <= 1000)
                 {
                     if (a_b <= 0.5) //lower bound for 1000 unsure of lower bound for 100
-                    {
-                        return_value = false;
-                    }
-                    if (a_b > 1.2 && a_b < 1.25) //both undefined
                     {
                         return_value = false;
                     }
@@ -76,33 +73,37 @@ class euler
                         return_value = false;
                     }
                 }
-                if(Re > 1000 && Re <= 1000000) //1000 is undefined for 1.2-1.25- still calculate for 1000 & interpolate
+                else if (Re <= 1000000) //1000 is undefined for 1.2-1.25- still calculate for 1000 & interpolate
                 {
                     if (a_b <= 0.45 || a_b >= 3.5)
                     {
                         return_value = false;
                     }
                 }
-                if(Re > 1000000) // we don't have over 1E6.
+                else // we don't have over 1E6.
                 {
                     return_value = false;
                 }
                 //checking for Re vs Eu/k1 graph
-                if(a <= 2 && a >= 1.25)
+                if(a < 1.25) // we don't have under 2.
+                {
+                    return_value = false;
+                }
+                else if(a <= 2)
                 {
                     if(Re < 2)
                     {
                         return_value = false;
                     }
                 }
-                if(a <= 2.5 && a > 2)
+                else if(a <= 2.5)
                 {
                     if(Re < 7)
                     {
                         return_value = false;
                     }
                 }
-                if(a > 2.5) // we don't have under 2.
+                else
                 {
                     return_value = false;
                 }
@@ -136,8 +137,54 @@ class euler
             return 0;
         }
     };
+        };
+        float K1_staggered()
+        {
+            float k1;
+            if (Re < 100)
+            {
+                k1 = 1;
+            }
+            else if (Re < 1000)
+            {
+                if (a_b <= 1.25)
+                {
+                    float k1_1 = 1;
+                    float k1_2 = pow(a_b, -0.048); //from eqn 53
+                    if (k1_2 < 1)
+                    {
+                        k1_2 = 1;
+                    }
+                    //TODO: linear interpolation
+                    k1 = -1;
+                }
+                else
+                {
+                    float k1_1 = 0.93f*pow(a_b, 0.48); //from eqn 56
+                    float k1_2 = 0.951f*pow(a_b, 0.284f); //from eqn 57
+                    //TODO: linear interpolation
+                    k1 = -1;
+                }
+            }
+            else if (Re < 10000)
+            {
+                float k1_1;
+                if (a_b < 1.25)
+                {
+                    k1_1 = pow(a_b, -0.048); //from eqn 53
+                    if (k1_1 < 1)
+                    {
+                        k1_1 = 1;
+                    }
+                }
+                else
+                {
+                    k1_1 = 0.951f*pow(a_b, 0.284f); //from eqn 57
+                }
 
-
+            }
+        }
+    };
 
 int main()
 {
