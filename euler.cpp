@@ -64,11 +64,7 @@ class euler
                 }
                 else if (Re <= 1000)
                 {
-                    if (a_b <= 0.5) //lower bound for 1000 unsure of lower bound for 100
-                    {
-                        return_value = false;
-                    }
-                    if (a_b >= 3.5) //upper for both
+                    if (a_b <= 0.5 || a_b >= 3.5) //lower bound for 1000 unsure of lower bound for 100
                     {
                         return_value = false;
                     }
@@ -85,7 +81,7 @@ class euler
                     return_value = false;
                 }
                 //checking for Re vs Eu/k1 graph
-                if(a < 1.25) // we don't have under 2.
+                if(a < 1.25) // we don't have under 1.25.
                 {
                     return_value = false;
                 }
@@ -104,6 +100,11 @@ class euler
                     }
                 }
                 else
+                {
+                    return_value = false;
+                }
+
+                if(a > 2000000)
                 {
                     return_value = false;
                 }
@@ -136,56 +137,63 @@ class euler
             }
             return 0;
         }
-    float K1_staggered()
-    {
-        float k1;
-        float k1_1;
-        float k1_2;
-        if (Re < 100)
+        float K1_staggered()
         {
-            k1 = 1;
-            return k1;
-        }
-        else if (Re < 1000)
-        {
-            if (a_b <= 1.25)
+            float k1;
+            float k1_1;
+            float k1_2;
+            if (Re < 100)
             {
-                k1_1 = 1;
-                k1_2 = pow(a_b, -0.048f); //from eqn 53
-                if (k1_2 < 1)
-                {
-                    k1_2 = 1;
-                }
+                k1 = 1;
+                return k1;
             }
-            else
+            else if (Re < 1000)
             {
-                k1_1 = 0.93f*pow(a_b, 0.48); //from eqn 56
-                k1_2 = 0.951f*pow(a_b, 0.284f); //from eqn 57
-            }
-        }
-        else if (Re < 10000)
-        {
-            if (a_b < 1.25)
-            {
-                k1_1 = pow(a_b, -0.048f); //from eqn 53
-                if (k1_1 < 1)
+                if (a_b <= 1.25)
                 {
                     k1_1 = 1;
+                    k1_2 = pow(a_b, -0.048f); //from eqn 53
+                    if (k1_2 < 1)
+                    {
+                        k1_2 = 1;
+                    }
+                }
+                else
+                {
+                    k1_1 = 0.93f*pow(a_b, 0.48); //from eqn 56
+                    k1_2 = 0.951f*pow(a_b, 0.284f); //from eqn 57
                 }
             }
-            else
+            else if (Re < 10000)
             {
-                k1_1 = 0.951f*pow(a_b, 0.284f); //from eqn 57
+                if (a_b < 1.25)
+                {
+                    k1_1 = pow(a_b, -0.048f); //from eqn 53
+                    if (k1_1 < 1)
+                    {
+                        k1_1 = 1;
+                    }
+                }
+                else
+                {
+                    k1_1 = 0.951f*pow(a_b, 0.284f); //from eqn 57
+                }
+                k1_2 = 1.28 - 0.708/a_b + 0.55/pow(a_b, 2) - 0.113/pow(a_b, 3); //eqn 54
             }
-            k1_2 = 1.28 - 0.708/a_b + 0.55/pow(a_b, 2) - 0.113/pow(a_b, 3); //eqn 54
-        }
-        else if (Re < 100000)
-        {
-            k1_1 = 1.28 - 0.708/a_b + 0.55/pow(a_b, 2) - 0.113/pow(a_b, 3); //eqn 54
-            k1_2 = 2.016f - 1.675f*a_b;
-        }
-        //TODO: linear interpolation w/ k1_1 & k1_2
-    }
+            else if (Re < 100000)
+            {
+                k1_1 = 1.28 - 0.708f/a_b + 0.55/pow(a_b, 2) - 0.113f/pow(a_b, 3); //eqn 54
+                k1_2 = 2.016f - 1.675f*a_b + 0.948f*pow(a_b, 2) - 0.234f*pow(a_b, 3) + 0.021f*pow(a_b, 4);
+            }
+            else if (Re < 1000000)
+            {
+                k1 = 2.016f - 1.675f*a_b + 0.948f*pow(a_b, 2) - 0.234f*pow(a_b, 3) + 0.021f*(a_b, 4);
+                return k1;
+            }
+            //TODO: linear interpolation w/ k1_1 & k1_2
+            k1 = -1; //for now
+            return k1;
+        };
 };
 
 
