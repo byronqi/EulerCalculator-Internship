@@ -132,37 +132,35 @@ class euler
         float K1_staggered()
         {
             float k1;
+            float k1_1;
+            float k1_2;
             if (Re < 100)
             {
                 k1 = 1;
+                return k1;
             }
             else if (Re < 1000)
             {
                 if (a_b <= 1.25)
                 {
-                    float k1_1 = 1;
-                    float k1_2 = pow(a_b, -0.048); //from eqn 53
+                    k1_1 = 1;
+                    k1_2 = pow(a_b, -0.048f); //from eqn 53
                     if (k1_2 < 1)
                     {
                         k1_2 = 1;
                     }
-                    //TODO: linear interpolation
-                    k1 = -1;
                 }
                 else
                 {
-                    float k1_1 = 0.93f*pow(a_b, 0.48); //from eqn 56
-                    float k1_2 = 0.951f*pow(a_b, 0.284f); //from eqn 57
-                    //TODO: linear interpolation
-                    k1 = -1;
+                    k1_1 = 0.93f*pow(a_b, 0.48); //from eqn 56
+                    k1_2 = 0.951f*pow(a_b, 0.284f); //from eqn 57
                 }
             }
             else if (Re < 10000)
             {
-                float k1_1;
                 if (a_b < 1.25)
                 {
-                    k1_1 = pow(a_b, -0.048); //from eqn 53
+                    k1_1 = pow(a_b, -0.048f); //from eqn 53
                     if (k1_1 < 1)
                     {
                         k1_1 = 1;
@@ -172,8 +170,14 @@ class euler
                 {
                     k1_1 = 0.951f*pow(a_b, 0.284f); //from eqn 57
                 }
-
+                k1_2 = 1.28 - 0.708/a_b + 0.55/pow(a_b, 2) - 0.113/pow(a_b, 3); //eqn 54
             }
+            else if (Re < 100000)
+            {
+                k1_1 = 1.28 - 0.708/a_b + 0.55/pow(a_b, 2) - 0.113/pow(a_b, 3); //eqn 54
+                k1_2 = 2.016f - 1.675f*a_b;
+            }
+            //TODO: linear interpolation w/ k1_1 & k1_2
         }
     };
 
