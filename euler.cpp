@@ -25,7 +25,18 @@ class euler
             }
             if (pattern == 1)
             {
-                a =
+                a = 1.414*pitch/diameter;
+                b = 0.707*pitch/diameter;
+            }
+            if (pattern == 2)
+            {
+                a = pitch/diameter;
+                b = 0.866*pitch/diameter;
+            }
+            if (pattern == 3)
+            {
+                a = 0.866*pitch/diameter;
+                b = pitch/diameter;
             }
         }
         void printme(){
