@@ -47,16 +47,45 @@ class euler
         }
         bool check_boundary()
         {
+            bool return_value = true;
             if (pattern == TRIANGULAR || pattern == SQUARE45) //boundary check: staggered
             {
                 //checking for a/b vs. k1 graph
                 float a_b = a/b;
-                if ()
+                if(Re < 100)
+                {
+                    //if a/b > 1.2 it's out of bounds
+                    if (a_b > 1.2)
+                    {
+                        return_value = false;
+                    }
+                }
+                if(Re >= 100 && Re < 1000)
+                {
+
+                }
+                if(Re >= 1000 && Re < 10000)
+                {
+
+                }
+                if(Re >= 10000 && Re < 100000)
+                {
+
+                }
+                if(Re >= 100000 && Re < 1000000)
+                {
+
+                }
+                if(Re >= 1000000)
+                {
+
+                }
             }
             else //boundary check: square
             {
 
             }
+            return return_value;
         }
     };
 
