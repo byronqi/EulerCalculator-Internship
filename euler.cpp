@@ -67,10 +67,6 @@ class euler
                     {
                         return_value = false;
                     }
-                    if (a_b > 1.2 && a_b < 1.25) //both undefined
-                    {
-                        return_value = false;
-                    }
                     if (a_b >= 3.5) //upper for both
                     {
                         return_value = false;
@@ -138,10 +134,45 @@ class euler
             float k1;
             if (Re < 100)
             {
-                if (a_b < 1.2)
+                k1 = 1;
+            }
+            else if (Re < 1000)
+            {
+                if (a_b <= 1.25)
                 {
-                    k1 = 1;
+                    float k1_1 = 1;
+                    float k1_2 = pow(a_b, -0.048); //from eqn 53
+                    if (k1_2 < 1)
+                    {
+                        k1_2 = 1;
+                    }
+                    //TODO: linear interpolation
+                    k1 = -1;
                 }
+                else
+                {
+                    float k1_1 = 0.93f*pow(a_b, 0.48); //from eqn 56
+                    float k1_2 = 0.951f*pow(a_b, 0.284f); //from eqn 57
+                    //TODO: linear interpolation
+                    k1 = -1;
+                }
+            }
+            else if (Re < 10000)
+            {
+                float k1_1;
+                if (a_b < 1.25)
+                {
+                    k1_1 = pow(a_b, -0.048); //from eqn 53
+                    if (k1_1 < 1)
+                    {
+                        k1_1 = 1;
+                    }
+                }
+                else
+                {
+                    k1_1 = 0.951f*pow(a_b, 0.284f); //from eqn 57
+                }
+
             }
         }
     };
