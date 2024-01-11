@@ -1,5 +1,6 @@
 #include <iostream>
 #include "euler.h"
+#include <math.h>
 
 // square = 0; square45 = 1, tri30 = 2; tri60 = 3
 class euler
@@ -83,7 +84,6 @@ class euler
                 {
                     return_value = false;
                 }
-
                 //checking for Re vs Eu/k1 graph
                 if(a < 1.25) // we don't have under 2.
                 {
@@ -115,19 +115,73 @@ class euler
             return return_value;
         }
         float calcK1Square(float a, float b, float Re) {
+            float k1;
+            float abCombined = (a-1)/(b-1);
             if (Re == 1000)
             {
-
+                k1 = 1.009f* pow(abCombined,-0.744);
+                return k1;
             }
             if (Re == 10000){
-
+                k1 = 1.007f* pow(abCombined,-0.655);
+                return k1;
             }
             if (Re == 100000){
-
+                k1 = 1.004f* pow(abCombined, -0.539);
+                return k1;
             }
             if (Re == 1000000){
-
+                k1 = 1.218f - (0.297f*abCombined) + (0.0265* pow(abCombined, 2));
+                return k1;
             }
+            return 0;
+        }
+    float K1_staggered()
+    {
+        float k1;
+        if (Re < 100)
+        {
+            k1 = 1;
+        }
+        else if (Re < 1000)
+        {
+            if (a_b <= 1.25)
+            {
+                float k1_1 = 1;
+                float k1_2 = pow(a_b, -0.048); //from eqn 53
+                if (k1_2 < 1)
+                {
+                    k1_2 = 1;
+                }
+                //TODO: linear interpolation
+                k1 = -1;
+            }
+            else
+            {
+                float k1_1 = 0.93f*pow(a_b, 0.48); //from eqn 56
+                float k1_2 = 0.951f*pow(a_b, 0.284f); //from eqn 57
+                //TODO: linear interpolation
+                k1 = -1;
+            }
+        }
+        else if (Re < 10000)
+        {
+            float k1_1;
+            if (a_b < 1.25)
+            {
+                k1_1 = pow(a_b, -0.048); //from eqn 53
+                if (k1_1 < 1)
+                {
+                    k1_1 = 1;
+                }
+            }
+            else
+            {
+                k1_1 = 0.951f*pow(a_b, 0.284f); //from eqn 57
+            }
+        }
+    }
+};
         };
         float K1_staggered()
         {
