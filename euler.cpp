@@ -87,7 +87,6 @@ class euler
                 {
                     return_value = false;
                 }
-
                 //checking for Re vs Eu/k1 graph
                 if(a <= 2 && a >= 1.25)
                 {
