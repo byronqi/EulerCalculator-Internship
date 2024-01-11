@@ -1,5 +1,6 @@
 #include <iostream>
 #include "euler.h"
+#include <math.h>
 
 // square = 0; square45 = 1, tri30 = 2; tri60 = 3
 class euler
@@ -114,20 +115,27 @@ class euler
             return return_value;
         }
         float calcK1Square(float a, float b, float Re) {
+            float k1;
+            float abCombined = (a-1)/(b-1);
             if (Re == 1000)
             {
-
+                k1 = 1.009f* pow(abCombined,-0.744);
+                return k1;
             }
             if (Re == 10000){
-
+                k1 = 1.007f* pow(abCombined,-0.655);
+                return k1;
             }
             if (Re == 100000){
-
+                k1 = 1.004f* pow(abCombined, -0.539);
+                return k1;
             }
             if (Re == 1000000){
-
+                k1 = 1.218f - (0.297f*abCombined) + (0.0265* pow(abCombined, 2));
+                return k1;
             }
-        };
+            return 0;
+        }
     };
 
 
