@@ -31,21 +31,21 @@ class euler
             }
             if (pattern == SQUARE45)
             {
-                a = 1.414*pitch/diameter;
-                b = 0.707*pitch/diameter;
+                a = 1.414f*pitch/diameter;
+                b = 0.707f*pitch/diameter;
             }
             if (pattern == TRIANGULAR)
             {
                 a = pitch/diameter;
-                b = 0.866*pitch/diameter;
+                b = 0.866f*pitch/diameter;
             }
             if (pattern == TRIANG60)
             {
-                a = 0.866*pitch/diameter;
+                a = 0.866f*pitch/diameter;
                 b = pitch/diameter;
             }
         }
-        bool check_boundary()
+        bool checkBoundary()
         {
             bool return_value = true;
             if (pattern == TRIANGULAR || pattern == SQUARE45) //boundary check: staggered
@@ -81,13 +81,30 @@ class euler
 
                 }
             }
-            else //boundary check: square
+            if (pattern == SQUARE || pattern == TRIANG60)
             {
-
+                // check if Euler is reasonable
             }
             return return_value;
         }
+        float calcK1Square(float a, float b, float Re) {
+            if (Re == 1000)
+            {
+
+            }
+            if (Re == 10000){
+
+            }
+            if (Re == 100000){
+
+            }
+            if (Re == 1000000){
+
+            }
+        };
     };
+
+
 
 int main()
 {
