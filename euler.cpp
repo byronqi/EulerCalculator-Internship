@@ -1,4 +1,6 @@
 #include <iostream>
+#include "euler.h"
+
 // square = 0; square45 = 1, tri30 = 2; tri60 = 3
 class euler
 {
@@ -14,39 +16,40 @@ class euler
             diameter = z;
             Re = j;
         }
+        void printme(){
+            std::cout << pattern;
+        }
+    private:
         float calculate_a_b()
         {
             float a;
             float b;
-            if (pattern == 0)
+            if (pattern == SQUARE)
             {
                 a = pitch/diameter;
                 b = pitch/diameter;
             }
-            if (pattern == 1)
+            if (pattern == SQUARE45)
             {
                 a = 1.414*pitch/diameter;
                 b = 0.707*pitch/diameter;
             }
-            if (pattern == 2)
+            if (pattern == TRIANGULAR)
             {
                 a = pitch/diameter;
                 b = 0.866*pitch/diameter;
             }
-            if (pattern == 3)
+            if (pattern == TRIANG60)
             {
                 a = 0.866*pitch/diameter;
                 b = pitch/diameter;
             }
         }
-        void printme(){
-            std::cout << pattern;
-        }
     };
 
 int main()
 {
-    euler myEuler("i", 1., 2., 3.);
+    euler myEuler(1, 1., 2., 3.);
     myEuler.printme();
     return 1;
 };
