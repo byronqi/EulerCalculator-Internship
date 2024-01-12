@@ -27,17 +27,38 @@ cEulerNumber::cEulerNumber(int x, float y, float z)
 
 float cEulerNumber::eulerNumberCalculation(float Re){
     // TODO: finish this and return Euler number
+    float Eu;
+    float a = calculate_a();
+    float b = calculate_b();
     if (pattern == TRIANGULAR || pattern == SQUARE45) //calculate for staggered.
     {
-        float a = calculate_a();
         float a_values[4] = {1.25, 1.5, 2.0, 2.5};
         float Eu_k1_values[4] = {0,0,0,0}; //again not sure if I have to do this.
 
+        //calculate Eu_k1 using quafit & given Re value for each value of a
+        //quafit(Re, &Eu_k1_values[0], sizeof(Re_staggered_a_1_25)/sizeof(Re_staggered_a_1_25[0]), Re_staggered_a_1_25, Eu_k1_staggered_a_1_25);
+        //quafit(Re, &Eu_k1_values[1], sizeof(Re_staggered_a_1_5)/sizeof(Re_staggered_a_1_5[0]), Re_staggered_a_1_5, Eu_k1_staggered_a_1_5);
+        //quafit(Re, &Eu_k1_values[2], sizeof(Re_staggered_a_2)/sizeof(Re_staggered_a_2[0]), Re_staggered_a_2, Eu_k1_staggered_a_2);
+        //quafit(Re, &Eu_k1_values[3], sizeof(Re_staggered_a_2_5)/sizeof(Re_staggered_a_2_5[0]), Re_staggered_a_2_5, Eu_k1_staggered_a_2_5);
+
+        //now Eu_k1_values has values for each a
+        //calculate Eu_k1 using linear interpolation
+        float Eu_k1;
+        float *x;
+        x = &a_values[0];
+        float *y;
+        y = &Eu_k1_values[0];
+        //slin(a, 4, x, y, &Eu_k1)
+
+        //calculate Eu
+        float k1 = k1Staggered(a, b, Re);
+        Eu = Eu_k1*k1;
     }
     else if (pattern == SQUARE || pattern == TRIANG60) //calculate for square.
     {
 
     }
+    return Eu;
 }
 
 // TODO: write checkBoundary() desc
