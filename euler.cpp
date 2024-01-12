@@ -1,23 +1,37 @@
 #include <iostream>
 #include "euler.h"
-#include <math.h>
+#include <cmath>
 
 // square = 0; square45 = 1, tri30 = 2; tri60 = 3
-class euler
+class cEulerNumber
 {
-    public:
+public:
         int pattern;
         float pitch;
         float diameter;
-        float Re;
-        euler(int x, float y, float z, float j)
+        cEulerNumber(int x, float y, float z)
         {
             pattern = x;
             pitch = y;
             diameter = z;
-            Re = j;
         }
-        void printme(){
+        float eulerNumberCalculation(float Re){
+            // TODO: finish this and return Euler number
+        }
+        // TODO: write checkBoundary() desc
+        bool checkBoundary(float Re)
+        {
+            float checkBoundary_A = calculate_a();
+            float checkBoundary_B = calculate_b();
+            if (pattern == TRIANGULAR || pattern == SQUARE45){
+                checkStaggeredBoundary(checkBoundary_A, checkBoundary_B, Re);
+            }
+            if (pattern == SQUARE || pattern == TRIANG60){
+                checkSquareBoundary(checkBoundary_A, checkBoundary_B, Re);
+            }
+            // TODO: return a value
+        }
+        void testMethod(){
             //test stuff
         }
     private:
@@ -63,9 +77,8 @@ class euler
             }
             return b;
         }
-        bool checkBoundary(float a, float b, float Re)
-        {
-            float a_b = a/b;
+        bool checkStaggeredBoundary(float a, float b, float Re){
+            float abValue = a / b;
             bool return_value = true;
             if (pattern == TRIANGULAR || pattern == SQUARE45) //boundary check: staggered
             {
@@ -73,21 +86,21 @@ class euler
                 if(Re < 100) //assume it's just 1
                 {
                     //if a/b > 1.25 and Re < 100 it's out of bounds b/c no data for this region
-                    if (a_b > 1.25 || a_b <= 0.5) //not sure of lower bound for 100
+                    if (abValue > 1.25 || abValue <= 0.5) //not sure of lower bound for 100
                     {
                         return_value = false;
                     }
                 }
                 else if (Re <= 1000)
                 {
-                    if (a_b <= 0.5 || a_b >= 3.5) //lower bound for 1000 unsure of lower bound for 100
+                    if (abValue <= 0.5 || abValue >= 3.5) //lower bound for 1000 unsure of lower bound for 100
                     {
                         return_value = false;
                     }
                 }
                 else if (Re <= 1000000) //1000 is undefined for 1.2-1.25- still calculate for 1000 & interpolate
                 {
-                    if (a_b <= 0.45 || a_b >= 3.5)
+                    if (abValue <= 0.45 || abValue >= 3.5)
                     {
                         return_value = false;
                     }
@@ -125,13 +138,12 @@ class euler
                     return_value = false;
                 }
             }
-            if (pattern == SQUARE || pattern == TRIANG60)
-            {
-                // check if Euler is reasonable
-            }
             return return_value;
         }
-        float calcK1Square(float a, float b, float Re) {
+        bool checkSquareBoundary(float a, float b, float Re){
+            // TODO: finish this
+        }
+        float k1Square(float a, float b, float Re) {
             float k1;
             float abCombined = (a-1)/(b-1);
             if (Re == 1000)
@@ -151,9 +163,10 @@ class euler
                 k1 = 1.218f - (0.297f*abCombined) + (0.0265* pow(abCombined, 2));
                 return k1;
             }
+            //TODO: linear interpolation w/ k1_1 & k1_2
             return 0;
         }
-        float K1_staggered(float a, float b)
+        float k1Staggered(float a, float b, float Re)
         {
             float a_b = a/b;
             float k1;
@@ -210,14 +223,10 @@ class euler
             //TODO: linear interpolation w/ k1_1 & k1_2
             k1 = -1; //for now
             return k1;
-        };
-
+        }
 };
-
 
 int main()
 {
-    euler myEuler(1, 1., 2., 3.);
-    myEuler.printme();
-    return 1;
+
 };

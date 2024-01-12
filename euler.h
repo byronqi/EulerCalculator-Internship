@@ -1,9 +1,6 @@
-//
-// Created by Eshing Ji on 1/11/24.
-//
-
 #ifndef EULER_K1_CALC_EULER_H
 #define EULER_K1_CALC_EULER_H
+// Tri = 0, Tri60 = 1, Sq = 2, Sq45 = 3
 enum TUBE_PATTERN_ENUM{
 
     TRIANGULAR,
