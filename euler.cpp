@@ -1,9 +1,10 @@
 #include <iostream>
 #include "euler.h"
 #include <cmath>
+// Tri = 0, Tri60 = 1, Sq = 2, Sq45 = 3
 
 //arrays for staggered, first declaring as all zeros w/ dummy lengths of 30. will change later.
-//TODO: add actual values
+// TODO: add actual values
 float Re_staggered_a_1_25[30] = {};
 float Eu_k1_staggered_a_1_25[30] = {};
 
@@ -16,7 +17,10 @@ float Eu_k1_staggered_a_2[30] = {};
 float Re_staggered_a_2_5[30] = {};
 float Eu_k1_staggered_a_2_5[30] = {};
 
-// square = 0; square45 = 1, tri30 = 2; tri60 = 3
+// Square Arrays
+float sq_xValuesForAll[]= {
+
+};
 
 cEulerNumber::cEulerNumber(int x, float y, float z)
 {
@@ -40,7 +44,7 @@ float cEulerNumber::eulerNumberCalculation(float Re){
     }
 }
 
-// TODO: write checkBoundary() desc
+// TODO: write checkBoundary() description
 bool cEulerNumber::checkBoundary(float Re)
 {
     float checkBoundary_A = calculate_a();
@@ -97,6 +101,23 @@ float cEulerNumber::calculate_b()
         b = pitch/diameter;
     }
     return b;
+}
+
+bool cEulerNumber::checkSquareBoundary(float a, float b, float Re){
+    bool returnValue = true;
+    // TODO: finish this
+    // if Re is less than 1000 or greater than 10^7 must extrapolate using slin()
+    if (Re < 1000){
+        returnValue = false;
+        return returnValue;
+    }
+    if (Re < 10000000){
+        returnValue = false;
+        return returnValue;
+    }
+    else{
+        return returnValue;
+    }
 }
 
 bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
@@ -160,13 +181,10 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
     return return_value;
 }
 
-bool cEulerNumber::checkSquareBoundary(float a, float b, float Re){
-    // TODO: finish this
-}
-
 float cEulerNumber::k1Square(float a, float b, float Re) {
     float k1;
     float abCombined = (a-1)/(b-1);
+
     if (Re == 1000)
     {
         k1 = 1.009f* pow(abCombined,-0.744);
