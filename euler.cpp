@@ -21,35 +21,51 @@ class euler
             //test stuff
         }
     private:
-        float a;
-        float b;
-        float a_b;
-        void calculate_a_and_b()
+        float calculate_a()
         {
+            float a;
             if (pattern == SQUARE)
             {
                 a = pitch/diameter;
-                b = pitch/diameter;
             }
             if (pattern == SQUARE45)
             {
                 a = 1.414f*pitch/diameter;
-                b = 0.707f*pitch/diameter;
             }
             if (pattern == TRIANGULAR)
             {
                 a = pitch/diameter;
-                b = 0.866f*pitch/diameter;
             }
             if (pattern == TRIANG60)
             {
                 a = 0.866f*pitch/diameter;
+            }
+            return a;
+        }
+        float calculate_b()
+        {
+            float b;
+            if (pattern == SQUARE)
+            {
                 b = pitch/diameter;
             }
-            a_b = a/b;
+            if (pattern == SQUARE45)
+            {
+                b = 0.707f*pitch/diameter;
+            }
+            if (pattern == TRIANGULAR)
+            {
+                b = 0.866f*pitch/diameter;
+            }
+            if (pattern == TRIANG60)
+            {
+                b = pitch/diameter;
+            }
+            return b;
         }
-        bool checkBoundary()
+        bool checkBoundary(float a, float b, float Re)
         {
+            float a_b = a/b;
             bool return_value = true;
             if (pattern == TRIANGULAR || pattern == SQUARE45) //boundary check: staggered
             {
@@ -137,8 +153,9 @@ class euler
             }
             return 0;
         }
-        float K1_staggered()
+        float K1_staggered(float a, float b)
         {
+            float a_b = a/b;
             float k1;
             float k1_1;
             float k1_2;
@@ -194,6 +211,7 @@ class euler
             k1 = -1; //for now
             return k1;
         };
+
 };
 
 
