@@ -2,6 +2,20 @@
 #include "euler.h"
 #include <cmath>
 
+//arrays for staggered, first declaring as all zeros w/ dummy lengths of 30. will change later.
+//TODO: add actual values
+float Re_staggered_a_1_25[30] = {};
+float Eu_k1_staggered_a_1_25[30] = {};
+
+float Re_staggered_a_1_5[30] = {};
+float Eu_k1_staggered_a_1_5[30] = {};
+
+float Re_staggered_a_2[30] = {};
+float Eu_k1_staggered_a_2[30] = {};
+
+float Re_staggered_a_2_5[30] = {};
+float Eu_k1_staggered_a_2_5[30] = {};
+
 // square = 0; square45 = 1, tri30 = 2; tri60 = 3
 
 cEulerNumber::cEulerNumber(int x, float y, float z)
@@ -15,6 +29,9 @@ float cEulerNumber::eulerNumberCalculation(float Re){
     // TODO: finish this and return Euler number
     if (pattern == TRIANGULAR || pattern == SQUARE45) //calculate for staggered.
     {
+        float a = calculate_a();
+        float a_values[4] = {1.25, 1.5, 2.0, 2.5};
+        float Eu_k1_values[4] = {0,0,0,0}; //again not sure if I have to do this.
 
     }
     else if (pattern == SQUARE || pattern == TRIANG60) //calculate for square.
@@ -85,63 +102,60 @@ float cEulerNumber::calculate_b()
 bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
     float abValue = a / b;
     bool return_value = true;
-    if (pattern == TRIANGULAR || pattern == SQUARE45) //boundary check: staggered
+    //checking for a/b vs. k1 graph:
+    if(Re < 100)
     {
-        //checking for a/b vs. k1 graph:
-        if(Re < 100)
-        {
-            //if a/b > 1.25 and Re < 100 it's out of bounds b/c no data for this region
-            if (abValue > 1.25 || abValue <= 0.5) //not sure of lower bound for 100
-            {
-                return_value = false;
-            }
-        }
-        else if (Re <= 1000)
-        {
-            if (abValue <= 0.5 || abValue >= 3.5) //lower bound for 1000 unsure of lower bound for 100
-            {
-                return_value = false;
-            }
-        }
-        else if (Re <= 1000000) //1000 is undefined for 1.2-1.25- still calculate for 1000 & interpolate
-        {
-            if (abValue <= 0.45 || abValue >= 3.5)
-            {
-                return_value = false;
-            }
-        }
-        else // we don't have over 1E6.
+        //if a/b > 1.25 and Re < 100 it's out of bounds b/c no data for this region
+        if (abValue > 1.25 || abValue <= 0.5) //not sure of lower bound for 100
         {
             return_value = false;
         }
-        //checking for Re vs Eu/k1 graph
-        if(a < 1.25) // we don't have under 1.25.
+    }
+    else if (Re <= 1000)
+    {
+        if (abValue <= 0.5 || abValue >= 3.5) //lower bound for 1000 unsure of lower bound for 100
         {
             return_value = false;
         }
-        else if(a <= 2)
-        {
-            if(Re < 2)
-            {
-                return_value = false;
-            }
-        }
-        else if(a <= 2.5)
-        {
-            if(Re < 7)
-            {
-                return_value = false;
-            }
-        }
-        else
+    }
+    else if (Re <= 1000000) //1000 is undefined for 1.2-1.25- still calculate for 1000 & interpolate
+    {
+        if (abValue <= 0.45 || abValue >= 3.5)
         {
             return_value = false;
         }
+    }
+    else // we don't have over 1E6.
+    {
+        return_value = false;
+    }
+    //checking for Re vs Eu/k1 graph
+    if(a < 1.25) // we don't have under 1.25.
+    {
+        return_value = false;
+    }
+    else if(a <= 2)
+    {
+        if(Re < 2)
+        {
+            return_value = false;
+        }
+    }
+    else if(a <= 2.5)
+    {
+        if(Re < 7)
+        {
+            return_value = false;
+        }
+    }
+    else
+    {
+        return_value = false;
+    }
 
-        if(Re > 2000000)
-        {
-            return_value = false;
-        }
+    if(Re > 2000000)
+    {
+        return_value = false;
     }
     return return_value;
 }
