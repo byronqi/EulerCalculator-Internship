@@ -7,8 +7,8 @@ public:
     int pattern;
     float pitch;
     float diameter;
+    cEulerNumber(int x, float y, float z); // class declaration
 
-    cEulerNumber(int x, float y, float z);
     float eulerNumberCalculation(float Re);
     bool checkBoundary(float Re);
 
