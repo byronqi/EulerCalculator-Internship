@@ -40,9 +40,9 @@ float cEulerNumber::eulerNumberCalculation(float Re){
         //quafit(Re, &Eu_k1_values[1], sizeof(Re_staggered_a_1_5)/sizeof(Re_staggered_a_1_5[0]), Re_staggered_a_1_5, Eu_k1_staggered_a_1_5);
         //quafit(Re, &Eu_k1_values[2], sizeof(Re_staggered_a_2)/sizeof(Re_staggered_a_2[0]), Re_staggered_a_2, Eu_k1_staggered_a_2);
         //quafit(Re, &Eu_k1_values[3], sizeof(Re_staggered_a_2_5)/sizeof(Re_staggered_a_2_5[0]), Re_staggered_a_2_5, Eu_k1_staggered_a_2_5);
-
         //now Eu_k1_values has values for each a
-        //calculate Eu_k1 using linear interpolation
+
+        //calculate Eu_k1 for specific a value using linear interpolation of a and Eu_k1 values
         float Eu_k1;
         float *x;
         x = &a_values[0];
@@ -54,9 +54,9 @@ float cEulerNumber::eulerNumberCalculation(float Re){
         float k1 = k1Staggered(a, b, Re);
         Eu = Eu_k1*k1;
     }
-    else if (pattern == SQUARE || pattern == TRIANG60) //calculate for square.
+    else //calculate for square.
     {
-
+        Eu = -1; //replace this
     }
     return Eu;
 }
@@ -127,7 +127,7 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
     if(Re < 100)
     {
         //if a/b > 1.25 and Re < 100 it's out of bounds b/c no data for this region
-        if (abValue > 1.25 || abValue <= 0.5) //not sure of lower bound for 100
+        if (abValue >= 1.25 || abValue <= 0.5) //not sure of lower bound for 100
         {
             return_value = false;
         }
@@ -139,19 +139,20 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
             return_value = false;
         }
     }
-    else if (Re <= 1000000) //1000 is undefined for 1.2-1.25- still calculate for 1000 & interpolate
+    else if (Re <= 1000000)
     {
         if (abValue <= 0.45 || abValue >= 3.5)
         {
             return_value = false;
         }
     }
-    else // we don't have over 1E6.
+    else // we don't have a line for Re over 1E6.
     {
         return_value = false;
     }
+
     //checking for Re vs Eu/k1 graph
-    if(a < 1.25) // we don't have under 1.25.
+    if(a < 1.25) // we don't have a line for a under 1.25.
     {
         return_value = false;
     }
@@ -162,14 +163,21 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
             return_value = false;
         }
     }
-    else if(a <= 2.5)
+    else if(a < 2.5)
     {
         if(Re < 7)
         {
             return_value = false;
         }
     }
-    else
+    else if(a == 2.5) //decided to put a shorter error bound on exactly 2.5 since it wouldn't be interpolating b/c its exactly 2.5 and the line has a shorter error bound
+    {
+        if(Re <= 100)
+        {
+            return_value = false;
+        }
+    }
+    else //we don't have a line for a over 2.5
     {
         return_value = false;
     }
@@ -228,11 +236,11 @@ float cEulerNumber::k1Staggered(float a, float b, float Re)
     k1_values[3] = 2.016f - 1.675f*a_b + 0.948f*pow(a_b, 2) - 0.234f*pow(a_b, 3) + 0.021f*pow(a_b, 4); //eqn 55
     k1_values[4] = 2.016f - 1.675f*a_b + 0.948f*pow(a_b, 2) - 0.234f*pow(a_b, 3) + 0.021f*pow(a_b, 4); //eqn 55
 
-    for (int i = 0; i < 5; i++)
+    for (float & k1_value : k1_values)
     {
-        if (k1_values[i] < 1)
+        if (k1_value < 1)
         {
-            k1_values[i] = 1;
+            k1_value = 1;
         }
     }
     float k1;
