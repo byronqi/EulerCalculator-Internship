@@ -54,7 +54,7 @@ bool cEulerNumber::checkBoundary(float Re)
         returnValue = checkStaggeredBoundary(checkBoundary_A, checkBoundary_B, Re);
     }
     if (pattern == SQUARE || pattern == TRIANG60){
-        returnValue = checkSquareBoundary(checkBoundary_A, checkBoundary_B, Re);
+        returnValue = checkSquareBoundary(Re);
     }
     return returnValue;
 }
@@ -103,7 +103,7 @@ float cEulerNumber::calculate_b()
     return b;
 }
 
-bool cEulerNumber::checkSquareBoundary(float a, float b, float Re){
+bool cEulerNumber::checkSquareBoundary(float Re){
     bool returnValue = true;
     // TODO: finish this
     // if Re is less than 1000 or greater than 10^7 must extrapolate using slin()
@@ -184,6 +184,12 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
 float cEulerNumber::k1Square(float a, float b, float Re) {
     float k1;
     float abCombined = (a-1)/(b-1);
+    float ReValues[] = {1000, 10000, 100000, 10000000, 10000000};
+    float getReValuesLength = sizeof(ReValues)/ sizeof(float);
+    float k1Values[5];
+    for (int i = 0; i > sizeof ReValues; i++){
+
+    }
 
     if (Re == 1000)
     {
