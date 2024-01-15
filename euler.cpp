@@ -2,8 +2,24 @@
 #include "euler.h"
 #include <cmath>
 
-//arrays for staggered, first declaring as all zeros w/ dummy lengths of 30. will change later.
-//TODO: add actual values
+/*!
+ * \brief Reynold's number x axis points for staggered tube bundles where
+ * a = 1.25
+ * \ingroup htxr
+ *
+ * Tabular x axis data for ratio of the transverse pitch to tube diameter (a)
+ * of 1.25 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
+ * 1983.  Zukauskas A., Ulinskas R.
+ *
+ * TODO: update:
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding y axis data is given by Eu_k1_staggered_a_1_25.
+ *
+ * \see Eu_k1_staggered_a_1_25
+ * \see eulerNumberCalculation
+ */
 float Re_staggered_a_1_25[]={
         4.014486f,
         6.056331f,
@@ -36,6 +52,25 @@ float Re_staggered_a_1_25[]={
         803792.3f,
         1013362.0f,
 };
+
+/*!
+ * \brief Euler number/k1 y axis points for staggered tube bundles where
+ * a = 1.25
+ * \ingroup htxr
+ *
+ * Tabular y axis data for ratio of the transverse pitch to tube diameter (a)
+ * of 1.25 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
+ * 1983.  Zukauskas A., Ulinskas R.
+ *
+ * TODO: update:
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding x axis data is given by Re_staggered_a_1_25.
+ *
+ * \see Re_staggered_a_1_25
+ * \see eulerNumberCalculation
+ */
 float Eu_k1_staggered_a_1_25[] = {
         72.78995f,
         46.33061f,
@@ -69,6 +104,24 @@ float Eu_k1_staggered_a_1_25[] = {
         0.2432747f
 };
 
+/*!
+ * \brief Reynold's number x axis points for staggered tube bundles where
+ * a = 1.5
+ * \ingroup htxr
+ *
+ * Tabular x axis data for ratio of the transverse pitch to tube diameter (a)
+ * of 1.5 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
+ * 1983.  Zukauskas A., Ulinskas R.
+ *
+ * TODO: update:
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding y axis data is given by Eu_k1_staggered_a_1_5.
+ *
+ * \see Eu_k1_staggered_a_1_5
+ * \see eulerNumberCalculation
+ */
 float Re_staggered_a_1_5[] = {
         4.055853f,
         5.982282f,
@@ -102,6 +155,24 @@ float Re_staggered_a_1_5[] = {
         2026869.0f,
 };
 
+/*!
+ * \brief Euler number/k1 y axis points for staggered tube bundles where
+ * a = 1.5
+ * \ingroup htxr
+ *
+ * Tabular y axis data for ratio of the transverse pitch to tube diameter (a)
+ * of 2 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
+ * 1983.  Zukauskas A., Ulinskas R.
+ *
+ * TODO: update:
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding x axis data is given by Re_staggered_a_1_5.
+ *
+ * \see Re_staggered_a_1_5
+ * \see eulerNumberCalculation
+ */
 float Eu_k1_staggered_a_1_5[] = {
         27.18803f,
         18.14214f,
@@ -135,6 +206,24 @@ float Eu_k1_staggered_a_1_5[] = {
         0.2091052f
 };
 
+/*!
+ * \brief Reynold's number x axis points for staggered tube bundles where
+ * a = 2
+ * \ingroup htxr
+ *
+ * Tabular x axis data for ratio of the transverse pitch to tube diameter (a)
+ * of 2 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
+ * 1983.  Zukauskas A., Ulinskas R.
+ *
+ * TODO: update:
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding y axis data is given by Eu_k1_staggered_a_2.
+ *
+ * \see Eu_k1_staggered_a_2
+ * \see eulerNumberCalculation
+ */
 float Re_staggered_a_2[] = {
         7.874958f,
         9.672720f,
@@ -165,7 +254,26 @@ float Re_staggered_a_2[] = {
         985411.8f,
         1973409.0f
 };
-float Eu_k1_staggered_a_2[30] = {
+
+/*!
+ * \brief Euler number/k1 y axis points for staggered tube bundles where
+ * a = 2
+ * \ingroup htxr
+ *
+ * Tabular y axis data for ratio of the transverse pitch to tube diameter (a)
+ * of 2 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
+ * 1983.  Zukauskas A., Ulinskas R.
+ *
+ * TODO: update:
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding x axis data is given by Re_staggered_a_2.
+ *
+ * \see Re_staggered_a_2
+ * \see eulerNumberCalculation
+ */
+float Eu_k1_staggered_a_2[] = {
         7.066946f,
         5.838178f,
         3.134279f,
@@ -196,6 +304,24 @@ float Eu_k1_staggered_a_2[30] = {
         0.1785992f,
 };
 
+/*!
+ * \brief Reynold's number x axis points for staggered tube bundles where
+ * a = 2.5
+ * \ingroup htxr
+ *
+ * Tabular x axis data for ratio of the transverse pitch to tube diameter (a)
+ * of 2.5 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
+ * 1983.  Zukauskas A., Ulinskas R.
+ *
+ * TODO: update:
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding y axis data is given by Eu_k1_staggered_a_2_5.
+ *
+ * \see Eu_k1_staggered_a_2_5
+ * \see eulerNumberCalculation
+ */
 float Re_staggered_a_2_5[] = {
         101.8910f,
         198.5177f,
@@ -220,6 +346,25 @@ float Re_staggered_a_2_5[] = {
         797881.2f,
         1029488.0f,
 };
+
+/*!
+ * \brief Euler number/k1 y axis points for staggered tube bundles where
+ * a = 2_5
+ * \ingroup htxr
+ *
+ * Tabular y axis data for ratio of the transverse pitch to tube diameter (a)
+ * of 2_5 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
+ * 1983.  Zukauskas A., Ulinskas R.
+ *
+ * TODO: update:
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding x axis data is given by Re_staggered_a_2_5.
+ *
+ * \see Re_staggered_a_2_5
+ * \see eulerNumberCalculation
+ */
 float Eu_k1_staggered_a_2_5[] = {
         0.9713363f,
         0.6606900f,
@@ -255,6 +400,26 @@ cEulerNumber::cEulerNumber(int x, float y, float z)
     diameter = z;
 }
 
+/*!
+ * \brief Returns the euler number for Bell method pressure drop in heat exchangers
+ * \ingroup htxr
+ * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
+ * \return Euler number (Eu)
+ *
+ * The original smoothed data comes from  figure 9 on p2.2.4-7 (for inline tubes)
+ * and figure 10 on p2.4-8 (for staggered tubes) in Heat Exchanger Design Handbook(HEDH)
+ * 1983.  Zukauskas A., Ulinskas R.
+ *
+ * TODO: update:
+ * This data is the source for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * \see Re_staggered_a_1_25, Eu_k1_staggered_a_1_25, Re_staggered_a_1_5,
+ * Eu_k1_staggered_a_1_5, Re_staggered_a_2, Eu_k1_staggered_a_2,
+ * Re_staggered_a_1_2_5, Eu_k1_staggered_a_2_5
+ * TODO: add square arrays here:
+ * \see [names of square arrays]
+ */
 float cEulerNumber::eulerNumberCalculation(float Re){
     // TODO: finish this and return Euler number
     float Eu;
@@ -291,7 +456,29 @@ float cEulerNumber::eulerNumberCalculation(float Re){
     return Eu;
 }
 
-// TODO: write checkBoundary() desc
+/*!
+ * \brief Returns a boolean describing whether the calculation of euler number for Bell
+ * method pressure drop in heat exchangers extrapolates from current data.
+ * \ingroup htxr
+ * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
+ * \return false if the calculation extrapolates and true if the calculation does not.
+ *
+ * The original smoothed data comes from  figure 9 on p2.2.4-7 (for inline tubes)
+ * and figure 10 on p2.4-8 (for staggered tubes) in Heat Exchanger Design Handbook(HEDH)
+ * 1983.  Zukauskas A., Ulinskas R.
+ *
+ * To calculate k1, functions 40-42 on p2.2.4-8 (for inline tubes) and 53-57 on
+ * p2.2.4-9 (for staggered tubes) were used, again from HEDH.
+ *
+ * TODO: update:
+ * This data is the source for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * \see checkStaggeredBoundary, checkSquareBoundary
+ * \see eulerNumberCalculation
+ * \see k1Square
+ * \see k1Staggered
+ */
 bool cEulerNumber::checkBoundary(float Re)
 {
     float checkBoundary_A = calculate_a();
@@ -306,6 +493,19 @@ bool cEulerNumber::checkBoundary(float Re)
     return returnValue;
 }
 
+/*!
+ * \brief Returns the transverse pitch ratio (a) depending on tube pattern
+ * \ingroup htxr
+ * \return Ratio of the transverse pitch to tube diameter (a)
+ *
+ * The transverse pitch ratio is defined in figure 2 in 2.2.4 in the Heat
+ * Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * \see checkStaggeredBoundary, checkSquareBoundary
+ * \see eulerNumberCalculation
+ * \see k1Square
+ * \see k1Staggered
+ */
 float cEulerNumber::calculate_a()
 {
     float a;
@@ -328,6 +528,19 @@ float cEulerNumber::calculate_a()
     return a;
 }
 
+/*!
+ * \brief Returns the longitudinal pitch ratio (b) depending on tube pattern
+ * \ingroup htxr
+ * \return Ratio of the longitudinal pitch ratio (b)
+ *
+ * The longitudinal pitch ratio is defined in figure 2 in 2.2.4 in the Heat
+ * Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * \see checkStaggeredBoundary, checkSquareBoundary
+ * \see eulerNumberCalculation
+ * \see k1Square
+ * \see k1Staggered
+ */
 float cEulerNumber::calculate_b()
 {
     float b;
@@ -350,6 +563,28 @@ float cEulerNumber::calculate_b()
     return b;
 }
 
+/*!
+ * \brief Returns a boolean describing whether the calculation of euler number for Bell
+ * method pressure drop in heat exchangers for staggered tubes extrapolates from current data.
+ * \ingroup htxr
+ * \param[in] a Transverse pitch ratio for heat exchanger tubes
+ * \param[in] b Longitudinal pitch ratio for heat exchanger tubes
+ * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
+ *
+ * \return false if the calculation extrapolates and true if the calculation does not.
+ *
+ * The original smoothed data comes from  figure 10 on p2.4-8 in Heat Exchanger Design
+ * Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * To calculate k1, functions 53-57 on p2.2.4-9 were used, again from HEDH.
+ *
+ * TODO: update:
+ * This data is the source for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * \see eulerNumberCalculation
+ * \see k1Staggered
+ */
 bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
     float abValue = a / b;
     bool return_value = true;
@@ -419,10 +654,49 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
     return return_value;
 }
 
+/*!
+ * \brief Returns a boolean describing whether the calculation of euler number for Bell
+ * method pressure drop in heat exchangers in inline tubes extrapolates from current data.
+ * \ingroup htxr
+ * \param[in] a Transverse pitch ratio for heat exchanger tubes
+ * \param[in] b Longitudinal pitch ratio for heat exchanger tubes
+ * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
+ * \return false if the calculation extrapolates and true if the calculation does not.
+ *
+ * The original smoothed data comes from  figure 9 on p2.2.4-7 in Heat Exchanger Design
+ * Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * To calculate k1, functions 40-42 on p2.2.4-8 were used, again from HEDH.
+ *
+ * TODO: update:
+ * This data is the source for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * \see eulerNumberCalculation
+ * \see k1Square
+ */
 bool cEulerNumber::checkSquareBoundary(float a, float b, float Re){
     // TODO: finish this
 }
 
+/*!
+ * \brief Returns geometry parameter k1 for inline tubes.
+ * \ingroup htxr
+ * \param[in] a Transverse pitch ratio for heat exchanger tubes
+ * \param[in] b Longitudinal pitch ratio for heat exchanger tubes
+ * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
+ * \return k1
+ *
+ * The source for the functions that calculate k1 was p2.2.4-8 in Heat Exchanger Design
+ * Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * TODO: update:
+ * This data is the source for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * \see eulerNumberCalculation
+ * \see k1Square
+ */
 float cEulerNumber::k1Square(float a, float b, float Re) {
     float k1;
     float abCombined = (a-1)/(b-1);
@@ -447,9 +721,31 @@ float cEulerNumber::k1Square(float a, float b, float Re) {
     return 0;
 }
 
+/*!
+ * \brief Returns geometry parameter k1 for staggered tubes.
+ * \ingroup htxr
+ * \param[in] a Transverse pitch ratio for heat exchanger tubes
+ * \param[in] b Longitudinal pitch ratio for heat exchanger tubes
+ * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
+ * \return k1
+ *
+ * To calculate k1, functions 53-57 on p2.2.4-9 were used from Heat Exchanger Design
+ * Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * TODO: update:
+ * This data is the source for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * \see eulerNumberCalculation
+ * \see k1Square
+ */
 float cEulerNumber::k1Staggered(float a, float b, float Re)
 {
     float a_b = a/b;
+    if (pattern == TRIANGULAR)
+    {
+        return 1;
+    }
     float Re_values[5] = {100, 1000, 10000, 100000, 1000000};
     float k1_values[5] = {0,0,0,0,0}; //not sure if I have to do this.
     if (a_b <= 1.25)
