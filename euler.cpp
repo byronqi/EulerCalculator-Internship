@@ -462,17 +462,6 @@ float cEulerNumber::eulerNumberCalculation(float Re){
  * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
  * \return false if the calculation extrapolates and true if the calculation does not.
  *
- * The original smoothed data comes from  figure 9 on p2.2.4-7 (for inline tubes)
- * and figure 10 on p2.4-8 (for staggered tubes) in Heat Exchanger Design Handbook(HEDH)
- * 1983.  Zukauskas A., Ulinskas R.
- *
- * To calculate k1, functions 40-42 on p2.2.4-8 (for inline tubes) and 53-57 on
- * p2.2.4-9 (for staggered tubes) were used, again from HEDH.
- *
- * TODO: update:
- * This data is the source for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * \see checkStaggeredBoundary, checkSquareBoundary
  * \see eulerNumberCalculation
  * \see k1Square
