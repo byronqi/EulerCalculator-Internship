@@ -11,10 +11,6 @@
  * of 1.25 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
  * 1983.  Zukauskas A., Ulinskas R.
  *
- * TODO: update:
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * The corresponding y axis data is given by Eu_k1_staggered_a_1_25.
  *
  * \see Eu_k1_staggered_a_1_25
@@ -61,10 +57,6 @@ float Re_staggered_a_1_25[]={
  * Tabular y axis data for ratio of the transverse pitch to tube diameter (a)
  * of 1.25 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
  * 1983.  Zukauskas A., Ulinskas R.
- *
- * TODO: update:
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
  *
  * The corresponding x axis data is given by Re_staggered_a_1_25.
  *
@@ -113,10 +105,6 @@ float Eu_k1_staggered_a_1_25[] = {
  * of 1.5 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
  * 1983.  Zukauskas A., Ulinskas R.
  *
- * TODO: update:
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * The corresponding y axis data is given by Eu_k1_staggered_a_1_5.
  *
  * \see Eu_k1_staggered_a_1_5
@@ -163,10 +151,6 @@ float Re_staggered_a_1_5[] = {
  * Tabular y axis data for ratio of the transverse pitch to tube diameter (a)
  * of 2 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
  * 1983.  Zukauskas A., Ulinskas R.
- *
- * TODO: update:
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
  *
  * The corresponding x axis data is given by Re_staggered_a_1_5.
  *
@@ -215,10 +199,6 @@ float Eu_k1_staggered_a_1_5[] = {
  * of 2 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
  * 1983.  Zukauskas A., Ulinskas R.
  *
- * TODO: update:
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * The corresponding y axis data is given by Eu_k1_staggered_a_2.
  *
  * \see Eu_k1_staggered_a_2
@@ -263,10 +243,6 @@ float Re_staggered_a_2[] = {
  * Tabular y axis data for ratio of the transverse pitch to tube diameter (a)
  * of 2 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
  * 1983.  Zukauskas A., Ulinskas R.
- *
- * TODO: update:
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
  *
  * The corresponding x axis data is given by Re_staggered_a_2.
  *
@@ -313,10 +289,6 @@ float Eu_k1_staggered_a_2[] = {
  * of 2.5 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
  * 1983.  Zukauskas A., Ulinskas R.
  *
- * TODO: update:
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * The corresponding y axis data is given by Eu_k1_staggered_a_2_5.
  *
  * \see Eu_k1_staggered_a_2_5
@@ -356,10 +328,6 @@ float Re_staggered_a_2_5[] = {
  * of 2_5 from figure 10 on p2.2.4-8 in Heat Exchanger Design Handbook(HEDH)
  * 1983.  Zukauskas A., Ulinskas R.
  *
- * TODO: update:
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * The corresponding x axis data is given by Re_staggered_a_2_5.
  *
  * \see Re_staggered_a_2_5
@@ -397,9 +365,6 @@ float Eu_k1_staggered_a_2_5[] = {
  *
  * Tabular x axis data for tube pitch of 1.25 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
- *
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
  *
  * The corresponding y axis data is given by Euk1Square_b_1_25.
  *
@@ -444,15 +409,12 @@ float ReSquare_b_1_25[]= {
  * Tabular y axis data for tube pitch of 1.25 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * The corresponding x axis data is given by ReSquare_b_1_25.
  *
  * \see ReSquare_b_1_25
  * \see eulerNumberCalculation
  */
-float Euk1Square_b_1_25[]{
+float Euk1Square_b_1_25[]={
         40.07657123f,
         29.19014968f,
         23.08300723f,
@@ -489,9 +451,6 @@ float Euk1Square_b_1_25[]{
  *
  * Tabular x axis data for tube pitch of 1.25 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
- *
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
  *
  * The corresponding y axis data is given by Euk1Square_b_1_5.
  *
@@ -537,9 +496,6 @@ float ReSquare_b_1_5[]= {
  * Tabular y axis data for tube pitch of 1.5 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * The corresponding x axis data is given by ReSquare_b_1_5.
  *
  * \see ReSquare_b_1_5
@@ -584,15 +540,12 @@ float Euk1Square_b_1_5[]={
  * Tabular x axis data for tube pitch of 2.0 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * The corresponding y axis data is given by Euk1Square_b_2.
  *
  * \see Euk1Square_b_2
  * \see eulerNumberCalculation
  */
-float ReSquare_b_2[]{
+float ReSquare_b_2[]={
         8.053169121f,
         10.10753329f,
         19.87718023f,
@@ -628,9 +581,6 @@ float ReSquare_b_2[]{
  *
  * Tabular y axis data for tube pitch of 2.0 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
- *
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
  *
  * The corresponding x axis data is given by ReSquare_b_2.
  *
@@ -674,15 +624,12 @@ float Euk1Square_b_2[]={
  * Tabular x axis data for tube pitch of 2.5 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * The corresponding y axis data is given by Euk1Square_b_2_5.
  *
  * \see Euk1Square_b_2_5
  * \see eulerNumberCalculation
  */
-float ReSquare_b_2_5[]{
+float ReSquare_b_2_5[]={
         796.3834273f,
         989.6632496f,
         1947.631222f,
@@ -705,15 +652,12 @@ float ReSquare_b_2_5[]{
  * Tabular y axis data for tube pitch of 2.5 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
- * This data is referenced for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * The corresponding x axis data is given by ReSquare_b_2_5.
  *
  * \see ReSquare_b_2_5
  * \see eulerNumberCalculation
  */
-float Euk1Square_b_2_5[]{
+float Euk1Square_b_2_5[]={
         0.187525813f,
         0.185746413f,
         0.18501129f,
@@ -757,10 +701,6 @@ cEulerNumber::cEulerNumber(int pattern, float pitch, float diameter)
  * The original smoothed data comes from  figure 9 on p2.2.4-7 (for inline tubes)
  * and figure 10 on p2.4-8 (for staggered tubes) in Heat Exchanger Design Handbook(HEDH)
  * 1983.  Zukauskas A., Ulinskas R.
- *
- * TODO: update:
- * This data is the source for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
  *
  * \see Re_staggered_a_1_25, Eu_k1_staggered_a_1_25, Re_staggered_a_1_5,
  * Eu_k1_staggered_a_1_5, Re_staggered_a_2, Eu_k1_staggered_a_2,
@@ -958,6 +898,8 @@ bool cEulerNumber::checkSquareBoundary(float Re){
  * \brief Returns a boolean describing whether the calculation of euler number for Bell
  * method pressure drop in heat exchangers for staggered tubes extrapolates from current data.
  * \ingroup htxr
+ * \param[in] a Transverse pitch ratio for heat exchanger tubes
+ * \param[in] b Longitudinal pitch ratio for heat exchanger tubes
  * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
  *
  * \return false if the calculation extrapolates and true if the calculation does not.
@@ -966,10 +908,6 @@ bool cEulerNumber::checkSquareBoundary(float Re){
  * Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * To calculate k1, functions 53-57 on p2.2.4-9 were used, again from HEDH.
- *
- * TODO: update:
- * This data is the source for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
  *
  * \see eulerNumberCalculation
  * \see k1Staggered
@@ -1054,10 +992,6 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
  * The source for the functions that calculate k1 was p2.2.4-8 in Heat Exchanger Design
  * Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
- * TODO: update:
- * This data is the source for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
  * \see eulerNumberCalculation
  * \see k1Square
  */
@@ -1090,10 +1024,6 @@ float cEulerNumber::k1Square(float a, float b, float Re) {
  *
  * To calculate k1, functions 53-57 on p2.2.4-9 were used from Heat Exchanger Design
  * Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
- *
- * TODO: update:
- * This data is the source for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
  *
  * \see eulerNumberCalculation
  * \see k1Square
