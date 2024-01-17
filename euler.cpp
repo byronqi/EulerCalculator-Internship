@@ -797,9 +797,27 @@ float cEulerNumber::eulerNumberCalculation(float Re){
         float k1 = k1Staggered(a, b, Re);
         Eu = Eu_k1*k1;
     }
-    else //calculate for square.
+    if (m_pattern == SQUARE || m_pattern == TRIANG60) //calculate for square.
     {
-        Eu = -1; //replace this
+        float b_Values[4] = {1.25, 1.5, 2.0, 2.5};
+        float Euk1_Values[4];
+        float Re_Sizes[4] = {sizeof(ReSquare_b_1_25)/sizeof(float), sizeof(ReSquare_b_1_5)/sizeof(float), sizeof(ReSquare_b_2)/sizeof(float), sizeof(ReSquare_b_2_5)/sizeof(float)};
+        float Euk1;
+        float k1;
+        float *bValuesPointer;
+        float *Euk1ValuesPointer;
+
+        // quafit calculations for each b value
+        // quafit(Re, pointer, Re_Sizes[0], ReSquare_b_1_25, Euk1Square_b_1_25);
+        // quafit(Re, pointer, Re_Sizes[0], ReSquare_b_1_5, Euk1Square_b_1_5);
+        // quafit(Re, pointer, Re_Sizes[0], ReSquare_b_2, Euk1Square_b_2);
+        // quafit(Re, pointer, Re_Sizes[0], ReSquare_b_2_5, Euk1Square_b_1_2_5);
+
+        bValuesPointer = &b_Values[0];
+        Euk1ValuesPointer = &Euk1_Values[0];
+        //slin(???, 4, bValuesPointer, Euk1ValuesPointer, &Eu_k1)
+        k1 = k1Square(a, b, Re);
+        Eu = Euk1*k1;
     }
     return Eu;
 }
@@ -900,10 +918,28 @@ float cEulerNumber::calculate_b()
     return b;
 }
 
-// TODO: Add desc
+// TODO: revise desc
+/*!
+ * \brief Returns a boolean describing whether the calculation of euler number for Bell
+ * method pressure drop in heat exchangers for square tubes extrapolates from current data.
+ * \ingroup htxr
+ * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
+ *
+ * \return false if the calculation extrapolates and true if the calculation does not.
+ *
+ * The original smoothed data comes from  figure 10 on p2.4-8 in Heat Exchanger Design
+ * Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * To calculate k1, functions 53-57 on p2.2.4-9 were used, again from HEDH.
+ *
+ * This data is the source for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * \see eulerNumberCalculation
+ * \see k1Square
+ */
 bool cEulerNumber::checkSquareBoundary(float Re){
     bool returnValue = true;
-    // TODO: finish this
     // if Re is less than 1000 or greater than 10^7 must extrapolate using slin()
     if (Re < 1000){
         returnValue = false;
@@ -1028,25 +1064,20 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
 float cEulerNumber::k1Square(float a, float b, float Re) {
     float k1;
     float abCombined = (a-1)/(b-1);
-    if (Re == 1000)
-    {
-        k1 = 1.009f* pow(abCombined,-0.744);
-        return k1;
-    }
-    if (Re == 10000){
-        k1 = 1.007f* pow(abCombined,-0.655);
-        return k1;
-    }
-    if (Re == 100000){
-        k1 = 1.004f* pow(abCombined, -0.539);
-        return k1;
-    }
-    if (Re == 1000000){
-        k1 = 1.218f - (0.297f*abCombined) + (0.0265* pow(abCombined, 2));
-        return k1;
-    }
-    //TODO: linear interpolation w/ k1_1 & k1_2
-    return 0;
+    float ReValues[] ={1000, 10000, 100000, 1000000};
+    float k1Values[4];
+    float *RePointer;
+    float *k1Pointer;
+
+    k1Values[0] = 1.009f* pow(abCombined,-0.744);
+    k1Values[1] = 1.007f* pow(abCombined,-0.655);
+    k1Values[2] = 1.004f* pow(abCombined, -0.539);
+    k1Values[3] = 1.218f - (0.297f*abCombined) + (0.0265* pow(abCombined, 2));
+
+    RePointer = &ReValues[0];
+    k1Pointer = &k1Values[0];
+    //slin(Re, 4, RePointer, k1Pointer, &k1)
+    return k1;
 }
 
 /*!

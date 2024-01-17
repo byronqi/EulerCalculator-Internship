@@ -1,6 +1,10 @@
 #ifndef EULER_K1_CALC_EULER_H
 #define EULER_K1_CALC_EULER_H
 
+/*!
+ * \brief Implementation of the Euler number calculator.
+ *
+ */
 class cEulerNumber
 {
 public:
