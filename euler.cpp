@@ -1057,7 +1057,7 @@ float cEulerNumber::k1Staggered(float a, float b, float Re)
         }
     }
     float k1 = 0.;
-    float *x; //TODO: ?????
+    float *x;
     x = &Re_values[0];
     float *y;
     y = &k1_values[0];
