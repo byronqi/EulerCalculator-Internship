@@ -391,7 +391,22 @@ float Eu_k1_staggered_a_2_5[] = {
         0.1330061
 };
 
-// Square Arrays
+/*!
+ * \brief Reynold's number x axis points for square tube bundles where
+ * b = 1.25
+ * \ingroup htxr
+ *
+ * Tabular x axis data for tube pitch of 1.25 from figure 9 on p2.2.4-7 in
+ * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding y axis data is given by Euk1Square_b_1_25.
+ *
+ * \see Euk1Square_b_1_25
+ * \see eulerNumberCalculation
+ */
 float ReSquare_b_1_25[]= {
         6.06457623f,
         8.038564834f,
@@ -422,6 +437,22 @@ float ReSquare_b_1_25[]= {
         1000804.166f
 };
 
+/*!
+ * \brief Euler number y axis points for square tube bundles where
+ * b = 1.25
+ * \ingroup htxr
+ *
+ * Tabular y axis data for tube pitch of 1.25 from figure 9 on p2.2.4-7 in
+ * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding x axis data is given by ReSquare_b_1_25.
+ *
+ * \see ReSquare_b_1_25
+ * \see eulerNumberCalculation
+ */
 float Euk1Square_b_1_25[]{
         40.07657123f,
         29.19014968f,
@@ -452,6 +483,22 @@ float Euk1Square_b_1_25[]{
         0.290122181f
 };
 
+/*!
+ * \brief Reynold's number x axis points for square tube bundles where
+ * b = 1.5
+ * \ingroup htxr
+ *
+ * Tabular x axis data for tube pitch of 1.25 from figure 9 on p2.2.4-7 in
+ * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding y axis data is given by Euk1Square_b_1_5.
+ *
+ * \see Euk1Square_b_1_5
+ * \see eulerNumberCalculation
+ */
 float ReSquare_b_1_5[]= {
         4.021423836f,
         6.06347553f,
@@ -483,6 +530,22 @@ float ReSquare_b_1_5[]= {
         999637.04f,
 };
 
+/*!
+ * \brief Euler number y axis points for square tube bundles where
+ * b = 1.5
+ * \ingroup htxr
+ *
+ * Tabular y axis data for tube pitch of 1.5 from figure 9 on p2.2.4-7 in
+ * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding x axis data is given by ReSquare_b_1_5.
+ *
+ * \see ReSquare_b_1_5
+ * \see eulerNumberCalculation
+ */
 float Euk1Square_b_1_5[]={
         22.68293328f,
         14.55048361f,
@@ -514,6 +577,22 @@ float Euk1Square_b_1_5[]={
         0.264147507f
 };
 
+/*!
+ * \brief Reynold's number x axis points for square tube bundles where
+ * b = 2.0
+ * \ingroup htxr
+ *
+ * Tabular x axis data for tube pitch of 2.0 from figure 9 on p2.2.4-7 in
+ * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding y axis data is given by Euk1Square_b_2.
+ *
+ * \see Euk1Square_b_2
+ * \see eulerNumberCalculation
+ */
 float ReSquare_b_2[]{
         8.053169121f,
         10.10753329f,
@@ -543,6 +622,22 @@ float ReSquare_b_2[]{
         1001492.111
 };
 
+/*!
+ * \brief Euler number y axis points for square tube bundles where
+ * b = 2.0
+ * \ingroup htxr
+ *
+ * Tabular y axis data for tube pitch of 2.0 from figure 9 on p2.2.4-7 in
+ * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding x axis data is given by ReSquare_b_2.
+ *
+ * \see ReSquare_b_2
+ * \see eulerNumberCalculation
+ */
 float Euk1Square_b_2[]={
         4.584031992f,
         3.71642611f,
@@ -572,6 +667,22 @@ float Euk1Square_b_2[]={
         0.186093261f
 };
 
+/*!
+ * \brief Reynold's number x axis points for square tube bundles where
+ * b = 2.5
+ * \ingroup htxr
+ *
+ * Tabular x axis data for tube pitch of 2.5 from figure 9 on p2.2.4-7 in
+ * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding y axis data is given by Euk1Square_b_2_5.
+ *
+ * \see Euk1Square_b_2_5
+ * \see eulerNumberCalculation
+ */
 float ReSquare_b_2_5[]{
         796.3834273f,
         989.6632496f,
@@ -587,6 +698,22 @@ float ReSquare_b_2_5[]{
         97997.99063f
 };
 
+/*!
+ * \brief Euler number y axis points for square tube bundles where
+ * b = 2.5
+ * \ingroup htxr
+ *
+ * Tabular y axis data for tube pitch of 2.5 from figure 9 on p2.2.4-7 in
+ * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
+ *
+ * This data is referenced for equations 6.21 and 6.22 on p278 of Process
+ * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
+ *
+ * The corresponding x axis data is given by ReSquare_b_2_5.
+ *
+ * \see ReSquare_b_2_5
+ * \see eulerNumberCalculation
+ */
 float Euk1Square_b_2_5[]{
         0.187525813f,
         0.185746413f,
@@ -765,8 +892,6 @@ float cEulerNumber::calculate_b()
  * \brief Returns a boolean describing whether the calculation of euler number for Bell
  * method pressure drop in heat exchangers for staggered tubes extrapolates from current data.
  * \ingroup htxr
- * \param[in] a Transverse pitch ratio for heat exchanger tubes
- * \param[in] b Longitudinal pitch ratio for heat exchanger tubes
  * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
  *
  * \return false if the calculation extrapolates and true if the calculation does not.
@@ -867,31 +992,6 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
         return_value = false;
     }
     return return_value;
-}
-
-/*!
- * \brief Returns a boolean describing whether the calculation of euler number for Bell
- * method pressure drop in heat exchangers in inline tubes extrapolates from current data.
- * \ingroup htxr
- * \param[in] a Transverse pitch ratio for heat exchanger tubes
- * \param[in] b Longitudinal pitch ratio for heat exchanger tubes
- * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
- * \return false if the calculation extrapolates and true if the calculation does not.
- *
- * The original smoothed data comes from  figure 9 on p2.2.4-7 in Heat Exchanger Design
- * Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
- *
- * To calculate k1, functions 40-42 on p2.2.4-8 were used, again from HEDH.
- *
- * TODO: update:
- * This data is the source for equations 6.21 and 6.22 on p278 of Process
- * Heat Transfer 1994. Hewitt G.F, Sires G.L., Bott T.R.
- *
- * \see eulerNumberCalculation
- * \see k1Square
- */
-bool cEulerNumber::checkSquareBoundary(float a, float b, float Re){
-    // TODO: finish this
 }
 
 /*!
