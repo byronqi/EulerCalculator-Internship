@@ -862,6 +862,8 @@ bool cEulerNumber::checkSquareBoundary(float Re){
  * \brief Returns a boolean describing whether the calculation of euler number for Bell
  * method pressure drop in heat exchangers for staggered tubes extrapolates from current data.
  * \ingroup htxr
+ * \param[in] a Transverse pitch ratio for heat exchanger tubes
+ * \param[in] b Longitudinal pitch ratio for heat exchanger tubes
  * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
  *
  * \return false if the calculation extrapolates and true if the calculation does not.
