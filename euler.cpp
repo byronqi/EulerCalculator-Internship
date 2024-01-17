@@ -825,7 +825,7 @@ bool cEulerNumber::checkBoundary(float Re)
         returnValue = checkStaggeredBoundary(checkBoundary_A, checkBoundary_B, Re);
     }
     if (m_pattern == SQUARE || m_pattern == TRIANG60){
-        returnValue = checkSquareBoundary(checkBoundary_A, checkBoundary_B, Re);
+        returnValue = checkSquareBoundary(Re);
     }
     return returnValue;
 }
@@ -900,6 +900,24 @@ float cEulerNumber::calculate_b()
     return b;
 }
 
+// TODO: Add desc
+bool cEulerNumber::checkSquareBoundary(float Re){
+    bool returnValue = true;
+    // TODO: finish this
+    // if Re is less than 1000 or greater than 10^7 must extrapolate using slin()
+    if (Re < 1000){
+        returnValue = false;
+        return returnValue;
+    }
+    if (Re < 10000000){
+        returnValue = false;
+        return returnValue;
+    }
+    else{
+        return returnValue;
+    }
+}
+
 /*!
  * \brief Returns a boolean describing whether the calculation of euler number for Bell
  * method pressure drop in heat exchangers for staggered tubes extrapolates from current data.
@@ -920,23 +938,6 @@ float cEulerNumber::calculate_b()
  * \see eulerNumberCalculation
  * \see k1Staggered
  */
-bool cEulerNumber::checkSquareBoundary(float Re){
-    bool returnValue = true;
-    // TODO: finish this
-    // if Re is less than 1000 or greater than 10^7 must extrapolate using slin()
-    if (Re < 1000){
-        returnValue = false;
-        return returnValue;
-    }
-    if (Re < 10000000){
-        returnValue = false;
-        return returnValue;
-    }
-    else{
-        return returnValue;
-    }
-}
-
 bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
     float abValue = a / b;
     bool return_value = true;
