@@ -363,7 +363,7 @@ float Eu_k1_staggered_a_2_5[] = {
  * b = 1.25
  * \ingroup htxr
  *
- * Tabular x axis data for tube pitch of 1.25 from figure 9 on p2.2.4-7 in
+ * Tabular x axis data for ratio of longitudinal tube pitch to diameter of 1.25 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * The corresponding y axis data is given by Euk1Square_b_1_25.
@@ -406,7 +406,7 @@ float ReSquare_b_1_25[]= {
  * b = 1.25
  * \ingroup htxr
  *
- * Tabular y axis data for tube pitch of 1.25 from figure 9 on p2.2.4-7 in
+ * Tabular y axis data for ratio of longitudinal tube pitch to diameter of 1.25 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * The corresponding x axis data is given by ReSquare_b_1_25.
@@ -449,7 +449,7 @@ float Euk1Square_b_1_25[]={
  * b = 1.5
  * \ingroup htxr
  *
- * Tabular x axis data for tube pitch of 1.25 from figure 9 on p2.2.4-7 in
+ * Tabular x axis data for ratio of longitudinal tube pitch to diameter of 1.25 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * The corresponding y axis data is given by Euk1Square_b_1_5.
@@ -493,7 +493,7 @@ float ReSquare_b_1_5[]= {
  * b = 1.5
  * \ingroup htxr
  *
- * Tabular y axis data for tube pitch of 1.5 from figure 9 on p2.2.4-7 in
+ * Tabular y axis data for ratio of longitudinal tube pitch to diameter of 1.5 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * The corresponding x axis data is given by ReSquare_b_1_5.
@@ -537,7 +537,7 @@ float Euk1Square_b_1_5[]={
  * b = 2.0
  * \ingroup htxr
  *
- * Tabular x axis data for tube pitch of 2.0 from figure 9 on p2.2.4-7 in
+ * Tabular x axis data for ratio of longitudinal tube pitch to diameter of 2.0 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * The corresponding y axis data is given by Euk1Square_b_2.
@@ -579,7 +579,7 @@ float ReSquare_b_2[]={
  * b = 2.0
  * \ingroup htxr
  *
- * Tabular y axis data for tube pitch of 2.0 from figure 9 on p2.2.4-7 in
+ * Tabular y axis data for ratio of longitudinal tube pitch to diameter of 2.0 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * The corresponding x axis data is given by ReSquare_b_2.
@@ -621,7 +621,7 @@ float Euk1Square_b_2[]={
  * b = 2.5
  * \ingroup htxr
  *
- * Tabular x axis data for tube pitch of 2.5 from figure 9 on p2.2.4-7 in
+ * Tabular x axis data for ratio of longitudinal tube pitch to diameter of 2.5 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * The corresponding y axis data is given by Euk1Square_b_2_5.
@@ -649,7 +649,7 @@ float ReSquare_b_2_5[]={
  * b = 2.5
  * \ingroup htxr
  *
- * Tabular y axis data for tube pitch of 2.5 from figure 9 on p2.2.4-7 in
+ * Tabular y axis data for ratio of longitudinal tube pitch to diameter of 2.5 from figure 9 on p2.2.4-7 in
  * Heat Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * The corresponding x axis data is given by ReSquare_b_2_5.
@@ -677,8 +677,8 @@ float Euk1Square_b_2_5[]={
  * involved extrapolation from current data
  * \ingroup htxr
  * \param[in] pattern The pattern of the tube array.
- * \param[in] pitch The pitch of the tubes.
- * \param[in] diameter The diameter of each tube in the array.
+ * \param[in] pitch The pitch of the tubes in units of inches.
+ * \param[in] diameter The diameter of each tube in the array in units of inches.
  *
  * \see eulerNumberCalculation
  * \see checkBoundary
@@ -699,7 +699,7 @@ cEulerNumber::cEulerNumber(int pattern, float pitch, float diameter)
  * \return Euler number (Eu)
  *
  * The original smoothed data comes from  figure 9 on p2.2.4-7 (for inline tubes)
- * and figure 10 on p2.4-8 (for staggered tubes) in Heat Exchanger Design Handbook(HEDH)
+ * and figure 10 on p2.2.4-8 (for staggered tubes) in Heat Exchanger Design Handbook(HEDH)
  * 1983.  Zukauskas A., Ulinskas R.
  *
  * \see Re_staggered_a_1_25, Eu_k1_staggered_a_1_25, Re_staggered_a_1_5,
@@ -709,7 +709,6 @@ cEulerNumber::cEulerNumber(int pattern, float pitch, float diameter)
  * \see [names of square arrays]
  */
 float cEulerNumber::eulerNumberCalculation(float Re){
-    // TODO: finish this and return Euler number
     float Eu;
     float a = calculate_a();
     float b = calculate_b();
@@ -718,7 +717,7 @@ float cEulerNumber::eulerNumberCalculation(float Re){
         float a_values[4] = {1.25, 1.5, 2.0, 2.5};
         float Eu_k1_values[4] = {0,0,0,0}; //again not sure if I have to do this.
 
-        //calculate Eu_k1 using quafit & given Re value for each value of a
+        //Calculate Eu_k1 using quafit and given Re value for each value of a
         //quafit(Re, &Eu_k1_values[0], sizeof(Re_staggered_a_1_25)/sizeof(Re_staggered_a_1_25[0]), Re_staggered_a_1_25, Eu_k1_staggered_a_1_25);
         //quafit(Re, &Eu_k1_values[1], sizeof(Re_staggered_a_1_5)/sizeof(Re_staggered_a_1_5[0]), Re_staggered_a_1_5, Eu_k1_staggered_a_1_5);
         //quafit(Re, &Eu_k1_values[2], sizeof(Re_staggered_a_2)/sizeof(Re_staggered_a_2[0]), Re_staggered_a_2, Eu_k1_staggered_a_2);
@@ -726,7 +725,7 @@ float cEulerNumber::eulerNumberCalculation(float Re){
         //now Eu_k1_values has values for each a
 
         //calculate Eu_k1 for specific a value using linear interpolation of a and Eu_k1 values
-        float Eu_k1;
+        float Eu_k1 = 0.;
         float *x;
         x = &a_values[0];
         float *y;
@@ -742,7 +741,7 @@ float cEulerNumber::eulerNumberCalculation(float Re){
         float b_Values[4] = {1.25, 1.5, 2.0, 2.5};
         float Euk1_Values[4];
         float Re_Sizes[4] = {sizeof(ReSquare_b_1_25)/sizeof(float), sizeof(ReSquare_b_1_5)/sizeof(float), sizeof(ReSquare_b_2)/sizeof(float), sizeof(ReSquare_b_2_5)/sizeof(float)};
-        float Euk1;
+        float Euk1 = 0.;
         float k1;
         float *bValuesPointer;
         float *Euk1ValuesPointer;
@@ -867,7 +866,7 @@ float cEulerNumber::calculate_b()
  *
  * \return false if the calculation extrapolates and true if the calculation does not.
  *
- * The original smoothed data comes from  figure 10 on p2.4-8 in Heat Exchanger Design
+ * The original smoothed data comes from  figure 10 on p2.2.4-8 in Heat Exchanger Design
  * Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * To calculate k1, functions 53-57 on p2.2.4-9 were used, again from HEDH.
@@ -904,7 +903,7 @@ bool cEulerNumber::checkSquareBoundary(float Re){
  *
  * \return false if the calculation extrapolates and true if the calculation does not.
  *
- * The original smoothed data comes from  figure 10 on p2.4-8 in Heat Exchanger Design
+ * The original smoothed data comes from  figure 10 on p2.2.4-8 in Heat Exchanger Design
  * Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * To calculate k1, functions 53-57 on p2.2.4-9 were used, again from HEDH.
@@ -915,18 +914,17 @@ bool cEulerNumber::checkSquareBoundary(float Re){
 bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
     float abValue = a / b;
     bool return_value = true;
-    //checking for a/b vs. k1 graph:
+    //Checking for a/b vs. k1 graph:
     if(Re < 100)
     {
-        //if a/b > 1.25 and Re < 100 it's out of bounds b/c no data for this region
-        if (abValue >= 1.25 || abValue <= 0.5) //not sure of lower bound for 100
+        if (abValue >= 1.25 || abValue <= 0.5)
         {
             return_value = false;
         }
     }
     else if (Re <= 1000)
     {
-        if (abValue <= 0.5 || abValue >= 3.5) //lower bound for 1000 unsure of lower bound for 100
+        if (abValue <= 0.5 || abValue >= 3.5)
         {
             return_value = false;
         }
@@ -938,38 +936,38 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
             return_value = false;
         }
     }
-    else // we don't have a line for Re over 1E6.
+    else
     {
         return_value = false;
     }
 
-    //checking for Re vs Eu/k1 graph
-    if(a < 1.25) // we don't have a line for a under 1.25.
+    //checking for Re vs Eu/k1 graph:
+    if(a < 1.25)
     {
         return_value = false;
     }
-    else if(a <= 2)
+    else if(a <= 1.5)
     {
-        if(Re < 2)
+        if(Re < 3)
         {
             return_value = false;
         }
     }
-    else if(a < 2.5)
+    else if(a <= 2)
     {
         if(Re < 7)
         {
             return_value = false;
         }
     }
-    else if(a == 2.5) //decided to put a shorter error bound on exactly 2.5 since it wouldn't be interpolating b/c its exactly 2.5 and the line has a shorter error bound
+    else if(a <= 2.5)
     {
-        if(Re <= 100)
+        if(Re < 100)
         {
             return_value = false;
         }
     }
-    else //we don't have a line for a over 2.5
+    else
     {
         return_value = false;
     }
@@ -996,7 +994,7 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
  * \see k1Square
  */
 float cEulerNumber::k1Square(float a, float b, float Re) {
-    float k1;
+    float k1 = 0.;
     float abCombined = (a-1)/(b-1);
     float ReValues[] ={1000, 10000, 100000, 1000000};
     float k1Values[4];
@@ -1058,8 +1056,8 @@ float cEulerNumber::k1Staggered(float a, float b, float Re)
             k1_value = 1;
         }
     }
-    float k1;
-    float *x;
+    float k1 = 0.;
+    float *x; //TODO: ?????
     x = &Re_values[0];
     float *y;
     y = &k1_values[0];
