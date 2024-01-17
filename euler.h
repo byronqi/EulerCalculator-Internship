@@ -4,10 +4,10 @@
 class cEulerNumber
 {
 public:
-    int pattern;
-    float pitch;
-    float diameter;
-    cEulerNumber(int x, float y, float z); // class declaration
+    int m_pattern;
+    float m_pitch;
+    float m_diameter;
+    cEulerNumber(int pattern, float pitch, float diameter); // class declaration
 
     float eulerNumberCalculation(float Re);
     bool checkBoundary(float Re);

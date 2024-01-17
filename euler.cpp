@@ -1,7 +1,6 @@
 #include <iostream>
 #include "euler.h"
 #include <cmath>
-// Tri = 0, Tri60 = 1, Sq = 2, Sq45 = 3
 
 /*!
  * \brief Reynold's number x axis points for staggered tube bundles where
@@ -729,11 +728,24 @@ float Euk1Square_b_2_5[]{
         0.169016662f
 };
 
-cEulerNumber::cEulerNumber(int x, float y, float z)
+/*!
+ * \brief Calculates Euler number and determines whether or not the calculations
+ * involved extrapolation from current data
+ * \ingroup htxr
+ * \param[in] pattern The pattern of the tube array.
+ * \param[in] pitch The pitch of the tubes.
+ * \param[in] diameter The diameter of each tube in the array.
+ *
+ * \see eulerNumberCalculation
+ * \see checkBoundary
+ * TODO: add square arrays here:
+ * \see [names of square arrays]
+ */
+cEulerNumber::cEulerNumber(int pattern, float pitch, float diameter)
 {
-    pattern = x;
-    pitch = y;
-    diameter = z;
+    m_pattern = pattern;
+    m_pitch = pitch;
+    m_diameter = diameter;
 }
 
 /*!
@@ -761,7 +773,7 @@ float cEulerNumber::eulerNumberCalculation(float Re){
     float Eu;
     float a = calculate_a();
     float b = calculate_b();
-    if (pattern == TRIANGULAR || pattern == SQUARE45) //calculate for staggered.
+    if (m_pattern == TRIANGULAR || m_pattern == SQUARE45) //calculate for staggered.
     {
         float a_values[4] = {1.25, 1.5, 2.0, 2.5};
         float Eu_k1_values[4] = {0,0,0,0}; //again not sure if I have to do this.
@@ -809,11 +821,11 @@ bool cEulerNumber::checkBoundary(float Re)
     float checkBoundary_A = calculate_a();
     float checkBoundary_B = calculate_b();
     bool returnValue;
-    if (pattern == TRIANGULAR || pattern == SQUARE45){
+    if (m_pattern == TRIANGULAR || m_pattern == SQUARE45){
         returnValue = checkStaggeredBoundary(checkBoundary_A, checkBoundary_B, Re);
     }
-    if (pattern == SQUARE || pattern == TRIANG60){
-        returnValue = checkSquareBoundary(Re);
+    if (m_pattern == SQUARE || m_pattern == TRIANG60){
+        returnValue = checkSquareBoundary(checkBoundary_A, checkBoundary_B, Re);
     }
     return returnValue;
 }
@@ -834,21 +846,21 @@ bool cEulerNumber::checkBoundary(float Re)
 float cEulerNumber::calculate_a()
 {
     float a;
-    if (pattern == SQUARE)
+    if (m_pattern == SQUARE)
     {
-        a = pitch/diameter;
+        a = m_pitch/m_diameter;
     }
-    if (pattern == SQUARE45)
+    if (m_pattern == SQUARE45)
     {
-        a = 1.414f*pitch/diameter;
+        a = 1.414f*m_pitch/m_diameter;
     }
-    if (pattern == TRIANGULAR)
+    if (m_pattern == TRIANGULAR)
     {
-        a = pitch/diameter;
+        a = m_pitch/m_diameter;
     }
-    if (pattern == TRIANG60)
+    if (m_pattern == TRIANG60)
     {
-        a = 0.866f*pitch/diameter;
+        a = 0.866f*m_pitch/m_diameter;
     }
     return a;
 }
@@ -869,21 +881,21 @@ float cEulerNumber::calculate_a()
 float cEulerNumber::calculate_b()
 {
     float b;
-    if (pattern == SQUARE)
+    if (m_pattern == SQUARE)
     {
-        b = pitch/diameter;
+        b = m_pitch/m_diameter;
     }
-    if (pattern == SQUARE45)
+    if (m_pattern == SQUARE45)
     {
-        b = 0.707f*pitch/diameter;
+        b = 0.707f*m_pitch/m_diameter;
     }
-    if (pattern == TRIANGULAR)
+    if (m_pattern == TRIANGULAR)
     {
-        b = 0.866f*pitch/diameter;
+        b = 0.866f*m_pitch/m_diameter;
     }
-    if (pattern == TRIANG60)
+    if (m_pattern == TRIANG60)
     {
-        b = pitch/diameter;
+        b = m_pitch/m_diameter;
     }
     return b;
 }
@@ -1015,13 +1027,6 @@ bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
 float cEulerNumber::k1Square(float a, float b, float Re) {
     float k1;
     float abCombined = (a-1)/(b-1);
-    float ReValues[] = {1000, 10000, 100000, 10000000, 10000000};
-    float getReValuesLength = sizeof(ReValues)/ sizeof(float);
-    float k1Values[5];
-    for (int i = 0; i > sizeof ReValues; i++){
-
-    }
-
     if (Re == 1000)
     {
         k1 = 1.009f* pow(abCombined,-0.744);
@@ -1064,7 +1069,7 @@ float cEulerNumber::k1Square(float a, float b, float Re) {
 float cEulerNumber::k1Staggered(float a, float b, float Re)
 {
     float a_b = a/b;
-    if (pattern == TRIANGULAR)
+    if (m_pattern == TRIANGULAR)
     {
         return 1;
     }
