@@ -884,14 +884,9 @@ bool cEulerNumber::checkSquareBoundary(float b, float Re){
     //Checking for (a-1)(b-1) vs. k1 graph (there are no limits specifically stated in formulas)
     if (Re < 1000){
         returnValue = false;
-        return returnValue;
     }
     if (Re > 10000000){
         returnValue = false;
-        return returnValue;
-    }
-    else{
-        return returnValue;
     }
 
     //checking for Re vs Eu/k1 graph (square does not need "a" to calculate boundaries)
@@ -899,17 +894,17 @@ bool cEulerNumber::checkSquareBoundary(float b, float Re){
         returnValue = false;
     }
     else if (b <= 1.5){
-        if (Re < 3 || Re > 2000000){
+        if (Re <= 3 || Re >= 2000000){
             returnValue = false;
         }
     }
     else if (b <= 2){
-        if (Re < 7 || Re > 2000000){
+        if (Re <= 7 || Re >= 2000000){
             returnValue = false;
         }
     }
     else if (b <= 2.5){
-        if (Re < 600 || Re > 20000){
+        if (Re <= 600 || Re >= 200000){
             returnValue = false;
         }
     }
