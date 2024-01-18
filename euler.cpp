@@ -782,7 +782,7 @@ bool cEulerNumber::checkBoundary(float Re)
         returnValue = checkStaggeredBoundary(checkBoundary_A, checkBoundary_B, Re);
     }
     if (m_pattern == SQUARE || m_pattern == TRIANG60){
-        returnValue = checkSquareBoundary(Re);
+        returnValue = checkSquareBoundary(checkBoundary_B, Re);
     }
     return returnValue;
 }
