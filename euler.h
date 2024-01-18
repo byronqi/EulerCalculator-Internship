@@ -23,6 +23,8 @@ private:
     bool checkSquareBoundary(float b, float Re);
     float k1Square(float a, float b, float Re);
     float k1Staggered(float a, float b, float Re);
+    void slin(double xi, short ncp, float *x, float *y, float *yi);
+    void quafit(double xin, float *yout, short np, float *xaxis, float *yaxis);
 };
 
 // Tri = 0, Tri60 = 1, Sq = 2, Sq45 = 3

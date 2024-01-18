@@ -1088,6 +1088,164 @@ float cEulerNumber::k1Staggered(float a, float b, float Re)
     return k1;
 }
 
+/**
+
+c  Linear table interpolation
+
+c
+
+c  input   xi    value of x where y is desired
+
+c          ncp   no of points in table
+
+c          x     x cordinate
+
+c          y     y cordinate
+
+c
+
+c  output  yi    y value at poshort xi
+
+*/
+void cEulerNumber::slin(double xi, short ncp, float *x, float *y, float *yi){
+
+    short         loc1, loc2;
+
+    float   x1, x2, y1, y2, slope;
+
+    // stloc(xi,x,ncp,&loc1,&loc2); TODO: missing dependency
+
+    x1 = x[loc1];
+    x2 = x[loc2];
+    y1 = y[loc1];
+    y2 = y[loc2];
+
+    if( x2 == x1 ) {
+
+        *yi = 0.;
+    }
+    else {
+
+        slope = (y2-y1)/(x2-x1);
+        *yi = y1 + slope * (xi-x1);
+    }
+}
+
+/**
+
+c   A general interpolation routine
+
+c   input : np = # of points in the input curve
+
+c           xaxis = x-axis poshort values in curve
+
+c           yaxis = y-axis poshort values in curve
+
+c           xin =   x poshort value at which y is desired
+
+c   ouput:  yout =   desired y value
+
+c
+
+c   Note : any x value outside the range will be linearly interpolated
+
+*/
+void cEulerNumber::quafit(double xin, float *yout, short np, float *xaxis, float *yaxis)
+{
+    short i, iend, istart, im, np1;
+    float v1, t1, v2, t2, v3, t3, x1, x2, x3, y1, y2, y3, denom, cc, aa, bb, center;
+
+    for ( i = 0; i < np; i++){
+
+        if( xaxis[i] >=  xin ) goto L20;
+    }
+
+    iend = np-1;
+    goto L25;
+
+    L20:
+    iend = i + 1;
+    if( iend > np -1 ) iend = np - 1;
+
+    L25:
+    istart = iend - 2;
+
+    if( istart < -1 ) iend = iend + 1;
+
+    if( iend > np -1 ) iend = np - 1;
+
+    istart = iend-2;
+
+    im = istart + 1;
+
+    if(istart > -1)
+    {
+        v1 = xaxis[istart];
+        t1 = yaxis[istart];
+    }
+    else
+    {
+        // lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout); TODO: missing dependency
+
+        return;
+
+    }
+
+    v2 = xaxis[im];
+    t2 = yaxis[im];
+    v3 = xaxis[iend];
+    t3 = yaxis[iend];
+
+
+    /*  calc coeff */
+    x2 = v1-v2;
+    x3 = v1*v1-v2*v2;
+    y2 = v1-v3;
+    y3 = v1*v1-v3*v3;
+    x1 = t1-t2;
+    y1 = t1-t3;
+    denom = x2*y3-x3*y2;
+
+    if( fabs(denom) < 1.e-20 )
+    {
+        // lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout); TODO: missing dependency
+        return;
+    }
+
+    cc = (x2*y1-x1*y2)/denom;
+
+    if( fabs(cc) <= 1.e-20 || fabs(x2) <= 1.e-20 )
+    {
+        // lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout); TODO: missing dependency
+        return;
+    }
+
+    bb = (x1-cc*x3)/x2;
+    aa = t1-bb*v1-cc*v1*v1;
+    center = -bb/cc/2.;
+
+    if((xaxis[iend] > center) && (xaxis[istart] < center))
+    {
+        if( xin < xaxis[im])
+        {
+            // lfit(xaxis[istart],yaxis[istart],xaxis[im],yaxis[im],xin, yout); TODO: missing dependency
+        }
+        else
+        {
+            // lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout); TODO: missing dependency
+        }
+        return;
+    }
+
+    if(  xin > xaxis[np-1])
+    {
+        np1 = np-2;
+        // lfit(xaxis[np1],yaxis[np1],xaxis[np-1],yaxis[np-1],xin,yout); TODO: missing dependency
+        return;
+    }
+    *yout = aa + bb*xin + cc*xin*xin;
+}
+
 int main()
 {
 
