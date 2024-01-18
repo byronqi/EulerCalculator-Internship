@@ -792,7 +792,7 @@ bool cEulerNumber::checkBoundary(float Re)
  * \ingroup htxr
  * \return Ratio of the transverse pitch to tube diameter (a)
  *
- * The transverse pitch ratio is defined in figure 2 in 2.2.4 in the Heat
+ * The transverse pitch ratio is defined in figure 2 in 2.2.4-2 in the Heat
  * Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * \see checkStaggeredBoundary, checkSquareBoundary
@@ -827,7 +827,7 @@ float cEulerNumber::calculate_a()
  * \ingroup htxr
  * \return Ratio of the longitudinal pitch ratio (b)
  *
- * The longitudinal pitch ratio is defined in figure 2 in 2.2.4 in the Heat
+ * The longitudinal pitch ratio is defined in figure 2 in 2.2.4-2 in the Heat
  * Exchanger Design Handbook(HEDH) 1983.  Zukauskas A., Ulinskas R.
  *
  * \see checkStaggeredBoundary, checkSquareBoundary
