@@ -682,8 +682,8 @@ float Euk1Square_b_2_5[]={
  *
  * \see eulerNumberCalculation
  * \see checkBoundary
- * TODO: add square arrays here:
- * \see [names of square arrays]
+ * \see ReSquare_b_1_25, Euk1Square_b_1_25, ReSquare_b_1_5, Euk1Square_b_1_5,
+ * ReSquare_b_2, Euk1Square_b_2, ReSquare_b_2_5, Euk1Square_b_2_5
  */
 cEulerNumber::cEulerNumber(int pattern, float pitch, float diameter)
 {
@@ -705,8 +705,8 @@ cEulerNumber::cEulerNumber(int pattern, float pitch, float diameter)
  * \see Re_staggered_a_1_25, Eu_k1_staggered_a_1_25, Re_staggered_a_1_5,
  * Eu_k1_staggered_a_1_5, Re_staggered_a_2, Eu_k1_staggered_a_2,
  * Re_staggered_a_1_2_5, Eu_k1_staggered_a_2_5
- * TODO: add square arrays here:
- * \see [names of square arrays]
+ * \see ReSquare_b_1_25, Euk1Square_b_1_25, ReSquare_b_1_5, Euk1Square_b_1_5,
+ * ReSquare_b_2, Euk1Square_b_2, ReSquare_b_2_5, Euk1Square_b_2_5
  */
 float cEulerNumber::eulerNumberCalculation(float Re){
     float Eu;
@@ -718,10 +718,10 @@ float cEulerNumber::eulerNumberCalculation(float Re){
         float Eu_k1_values[4] = {0,0,0,0}; //again not sure if I have to do this.
 
         //Calculate Eu_k1 using quafit and given Re value for each value of a
-        //quafit(Re, &Eu_k1_values[0], sizeof(Re_staggered_a_1_25)/sizeof(Re_staggered_a_1_25[0]), Re_staggered_a_1_25, Eu_k1_staggered_a_1_25);
-        //quafit(Re, &Eu_k1_values[1], sizeof(Re_staggered_a_1_5)/sizeof(Re_staggered_a_1_5[0]), Re_staggered_a_1_5, Eu_k1_staggered_a_1_5);
-        //quafit(Re, &Eu_k1_values[2], sizeof(Re_staggered_a_2)/sizeof(Re_staggered_a_2[0]), Re_staggered_a_2, Eu_k1_staggered_a_2);
-        //quafit(Re, &Eu_k1_values[3], sizeof(Re_staggered_a_2_5)/sizeof(Re_staggered_a_2_5[0]), Re_staggered_a_2_5, Eu_k1_staggered_a_2_5);
+        quafit(Re, &Eu_k1_values[0], sizeof(Re_staggered_a_1_25)/sizeof(Re_staggered_a_1_25[0]), Re_staggered_a_1_25, Eu_k1_staggered_a_1_25);
+        quafit(Re, &Eu_k1_values[1], sizeof(Re_staggered_a_1_5)/sizeof(Re_staggered_a_1_5[0]), Re_staggered_a_1_5, Eu_k1_staggered_a_1_5);
+        quafit(Re, &Eu_k1_values[2], sizeof(Re_staggered_a_2)/sizeof(Re_staggered_a_2[0]), Re_staggered_a_2, Eu_k1_staggered_a_2);
+        quafit(Re, &Eu_k1_values[3], sizeof(Re_staggered_a_2_5)/sizeof(Re_staggered_a_2_5[0]), Re_staggered_a_2_5, Eu_k1_staggered_a_2_5);
         //now Eu_k1_values has values for each a
 
         //calculate Eu_k1 for specific a value using linear interpolation of a and Eu_k1 values
@@ -730,7 +730,7 @@ float cEulerNumber::eulerNumberCalculation(float Re){
         x = &a_values[0];
         float *y;
         y = &Eu_k1_values[0];
-        //slin(a, 4, x, y, &Eu_k1)
+        slin(a, 4, x, y, &Eu_k1);
 
         //calculate Eu
         float k1 = k1Staggered(a, b, Re);
@@ -740,21 +740,21 @@ float cEulerNumber::eulerNumberCalculation(float Re){
     {
         float b_Values[4] = {1.25, 1.5, 2.0, 2.5};
         float Euk1_Values[4];
-        float Re_Sizes[4] = {sizeof(ReSquare_b_1_25)/sizeof(float), sizeof(ReSquare_b_1_5)/sizeof(float), sizeof(ReSquare_b_2)/sizeof(float), sizeof(ReSquare_b_2_5)/sizeof(float)};
+        int Re_Sizes[4] = {sizeof(ReSquare_b_1_25)/sizeof(float), sizeof(ReSquare_b_1_5)/sizeof(float), sizeof(ReSquare_b_2)/sizeof(float), sizeof(ReSquare_b_2_5)/sizeof(float)};
         float Euk1 = 0.;
         float k1;
         float *bValuesPointer;
         float *Euk1ValuesPointer;
 
         // quafit calculations for each b value
-        // quafit(Re, pointer, Re_Sizes[0], ReSquare_b_1_25, Euk1Square_b_1_25);
-        // quafit(Re, pointer, Re_Sizes[0], ReSquare_b_1_5, Euk1Square_b_1_5);
-        // quafit(Re, pointer, Re_Sizes[0], ReSquare_b_2, Euk1Square_b_2);
-        // quafit(Re, pointer, Re_Sizes[0], ReSquare_b_2_5, Euk1Square_b_1_2_5);
+         quafit(Re, &Euk1_Values[0], Re_Sizes[0], ReSquare_b_1_25, Euk1Square_b_1_25);
+         quafit(Re, &Euk1_Values[1], Re_Sizes[1], ReSquare_b_1_5, Euk1Square_b_1_5);
+         quafit(Re, &Euk1_Values[2], Re_Sizes[2], ReSquare_b_2, Euk1Square_b_2);
+         quafit(Re, &Euk1_Values[3], Re_Sizes[3], ReSquare_b_2_5, Euk1Square_b_2_5);
 
         bValuesPointer = &b_Values[0];
         Euk1ValuesPointer = &Euk1_Values[0];
-        //slin(???, 4, bValuesPointer, Euk1ValuesPointer, &Eu_k1)
+        slin(b, 4, bValuesPointer, Euk1ValuesPointer, &Euk1);
         k1 = k1Square(a, b, Re);
         Eu = Euk1*k1;
     }
@@ -1026,7 +1026,7 @@ float cEulerNumber::k1Square(float a, float b, float Re) {
 
     RePointer = &ReValues[0];
     k1Pointer = &k1Values[0];
-    //slin(Re, 4, RePointer, k1Pointer, &k1)
+    slin(Re, 4, RePointer, k1Pointer, &k1);
     return k1;
 }
 
@@ -1079,8 +1079,35 @@ float cEulerNumber::k1Staggered(float a, float b, float Re)
     x = &Re_values[0];
     float *y;
     y = &k1_values[0];
-    //slin(Re, 5, x, y, &k1)
+    slin(Re, 5, x, y, &k1);
     return k1;
+}
+
+/*
+
+c   linear interpolation
+
+c
+
+c   input : (x1,y1),(x2,y2) as two fixed points
+
+c           x point
+
+c   output  y as value at point  x
+
+*/
+void cEulerNumber::lfit(double x1, double y1, double x2, double y2, double x, float *y)
+{
+    float slope;
+    if( x2 == x1 ) {
+
+        *y = 0.;
+    }
+    else {
+
+        slope = (y2-y1)/(x2-x1);
+        *y = y1 + slope * (x-x1);
+    }
 }
 
 /**
@@ -1180,7 +1207,7 @@ void cEulerNumber::quafit(double xin, float *yout, short np, float *xaxis, float
     }
     else
     {
-        // lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout); TODO: missing dependency
+        lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout);
 
         return;
 
@@ -1203,7 +1230,7 @@ void cEulerNumber::quafit(double xin, float *yout, short np, float *xaxis, float
 
     if( fabs(denom) < 1.e-20 )
     {
-        // lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout); TODO: missing dependency
+        lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout);
         return;
     }
 
@@ -1211,7 +1238,7 @@ void cEulerNumber::quafit(double xin, float *yout, short np, float *xaxis, float
 
     if( fabs(cc) <= 1.e-20 || fabs(x2) <= 1.e-20 )
     {
-        // lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout); TODO: missing dependency
+         lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout);
         return;
     }
 
@@ -1223,11 +1250,11 @@ void cEulerNumber::quafit(double xin, float *yout, short np, float *xaxis, float
     {
         if( xin < xaxis[im])
         {
-            // lfit(xaxis[istart],yaxis[istart],xaxis[im],yaxis[im],xin, yout); TODO: missing dependency
+            lfit(xaxis[istart],yaxis[istart],xaxis[im],yaxis[im],xin, yout);
         }
         else
         {
-            // lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout); TODO: missing dependency
+            lfit(xaxis[im],yaxis[im],xaxis[iend],yaxis[iend],xin,yout);
         }
         return;
     }
@@ -1235,7 +1262,7 @@ void cEulerNumber::quafit(double xin, float *yout, short np, float *xaxis, float
     if(  xin > xaxis[np-1])
     {
         np1 = np-2;
-        // lfit(xaxis[np1],yaxis[np1],xaxis[np-1],yaxis[np-1],xin,yout); TODO: missing dependency
+        lfit(xaxis[np1],yaxis[np1],xaxis[np-1],yaxis[np-1],xin,yout);
         return;
     }
     *yout = aa + bb*xin + cc*xin*xin;
@@ -1243,5 +1270,6 @@ void cEulerNumber::quafit(double xin, float *yout, short np, float *xaxis, float
 
 int main()
 {
-
+    cEulerNumber myEuler(2, 2, 1); //square
+    std::cout << myEuler.eulerNumberCalculation(1000000);
 };
