@@ -862,6 +862,8 @@ float cEulerNumber::calculate_b()
  * \brief Returns a boolean describing whether the calculation of euler number for Bell
  * method pressure drop in heat exchangers for square tubes extrapolates from current data.
  * \ingroup htxr
+ *
+ * \param[in] b Longitudinal pitch ratio for heat exchanger tubes
  * \param[in] Re Reynolds number of shell-side fluid in heat exchanger
  *
  * \return false if the calculation extrapolates and true if the calculation does not.
@@ -877,20 +879,41 @@ float cEulerNumber::calculate_b()
  * \see eulerNumberCalculation
  * \see k1Square
  */
-bool cEulerNumber::checkSquareBoundary(float Re){
+bool cEulerNumber::checkSquareBoundary(float b, float Re){
     bool returnValue = true;
-    // if Re is less than 1000 or greater than 10^7 must extrapolate using slin()
+    //Checking for (a-1)(b-1) vs. k1 graph (there are no limits specifically stated in formulas)
     if (Re < 1000){
         returnValue = false;
         return returnValue;
     }
-    if (Re < 10000000){
+    if (Re > 10000000){
         returnValue = false;
         return returnValue;
     }
     else{
         return returnValue;
     }
+
+    //checking for Re vs Eu/k1 graph (square does not need "a" to calculate boundaries)
+    if (b < 1.25){
+        returnValue = false;
+    }
+    else if (b <= 1.5){
+        if (Re < 3 || Re > 2000000){
+            returnValue = false;
+        }
+    }
+    else if (b <= 2){
+        if (Re < 7 || Re > 2000000){
+            returnValue = false;
+        }
+    }
+    else if (b <= 2.5){
+        if (Re < 600 || Re > 20000){
+            returnValue = false;
+        }
+    }
+    return returnValue;
 }
 
 /*!

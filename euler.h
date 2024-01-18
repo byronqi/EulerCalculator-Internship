@@ -20,7 +20,7 @@ private:
     float calculate_a();
     float calculate_b();
     bool checkStaggeredBoundary(float a, float b, float Re);
-    bool checkSquareBoundary(float Re);
+    bool checkSquareBoundary(float b, float Re);
     float k1Square(float a, float b, float Re);
     float k1Staggered(float a, float b, float Re);
 };
