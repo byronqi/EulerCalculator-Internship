@@ -1049,7 +1049,7 @@ float cEulerNumber::k1Staggered(float a, float b, float Re)
     float a_b = a/b;
     if (m_pattern == TRIANGULAR)
     {
-        return 1;
+        return 1.0f;
     }
     float Re_values[5] = {100, 1000, 10000, 100000, 1000000};
     float k1_values[5] = {0,0,0,0,0}; //not sure if I have to do this.
@@ -1057,23 +1057,21 @@ float cEulerNumber::k1Staggered(float a, float b, float Re)
     {
         k1_values[0] = 1;
         k1_values[1] = pow(a_b, -0.048f); //from eqn 53
+        if (k1_values[1] < 1)
+        {
+            k1_values[1] = 1;
+        }
     }
     else
     {
         k1_values[0] = 0.93f*pow(a_b, 0.48); //from eqn 56
         k1_values[1] = 0.951f*pow(a_b, 0.284f); //from eqn 57
+
     }
     k1_values[2] = 1.28 - 0.708f/a_b + 0.55/pow(a_b, 2) - 0.113f/pow(a_b, 3); //eqn 54
     k1_values[3] = 2.016f - 1.675f*a_b + 0.948f*pow(a_b, 2) - 0.234f*pow(a_b, 3) + 0.021f*pow(a_b, 4); //eqn 55
     k1_values[4] = 2.016f - 1.675f*a_b + 0.948f*pow(a_b, 2) - 0.234f*pow(a_b, 3) + 0.021f*pow(a_b, 4); //eqn 55
 
-    for (float & k1_value : k1_values)
-    {
-        if (k1_value < 1)
-        {
-            k1_value = 1;
-        }
-    }
     float k1 = 0.;
     float *x;
     x = &Re_values[0];
@@ -1289,8 +1287,9 @@ void cEulerNumber::stloc(double t, float *x, short np, short *loc1, short *loc2)
 
 int main()
 {
-    cEulerNumber myEuler(2, 2, 1); //square
-    std::cout << myEuler.eulerNumberCalculation(1000000);
+    cEulerNumber myEuler(3, 1.0608, 1); //square
+    float bruh =  myEuler.eulerNumberCalculation(100000);
+    std::cout << "\neuler:\n";
     std::cout << "\n";
-    std::cout << myEuler.checkBoundary(1000000);
+    std::cout << myEuler.checkBoundary(100000);
 };
