@@ -1,3 +1,0 @@
-C:/Users/byron/CLionProjects/Euler-K1-Calc/cmake-build-debug/CMakeFiles/Euler_K1_Calc.dir
-C:/Users/byron/CLionProjects/Euler-K1-Calc/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/byron/CLionProjects/Euler-K1-Calc/cmake-build-debug/CMakeFiles/rebuild_cache.dir
