@@ -797,9 +797,8 @@ bool cEulerNumber::checkBoundary(float Re)
     return returnValue;
 }
 
-void cEulerNumber::testValues(int highestNumber)
+void cEulerNumber::testValues(int highestPower)
 {
-    int highestPower = 6;
     int num = 5*highestPower + 1;
     float inputs[num];
     memset( inputs, 0, num*sizeof(float) );
