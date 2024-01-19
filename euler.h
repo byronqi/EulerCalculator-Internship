@@ -26,6 +26,7 @@ private:
     void slin(double xi, short ncp, float *x, float *y, float *yi);
     void quafit(double xin, float *yout, short np, float *xaxis, float *yaxis);
     void lfit(double x1, double y1, double x2, double y2, double x, float *y);
+    void stloc(double t, float *x, short np, short *loc1, short *loc2);
 };
 
 // Tri = 0, Tri60 = 1, Sq = 2, Sq45 = 3

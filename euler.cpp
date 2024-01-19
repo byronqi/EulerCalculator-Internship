@@ -1135,7 +1135,7 @@ void cEulerNumber::slin(double xi, short ncp, float *x, float *y, float *yi){
 
     float   x1, x2, y1, y2, slope;
 
-    // stloc(xi,x,ncp,&loc1,&loc2); TODO: missing dependency
+    stloc(xi,x,ncp,&loc1,&loc2);
 
     x1 = x[loc1];
     x2 = x[loc2];
@@ -1218,7 +1218,6 @@ void cEulerNumber::quafit(double xin, float *yout, short np, float *xaxis, float
     v3 = xaxis[iend];
     t3 = yaxis[iend];
 
-
     /*  calc coeff */
     x2 = v1-v2;
     x3 = v1*v1-v2*v2;
@@ -1266,6 +1265,50 @@ void cEulerNumber::quafit(double xin, float *yout, short np, float *xaxis, float
         return;
     }
     *yout = aa + bb*xin + cc*xin*xin;
+}
+
+/**
+c  Routine search for the location of t in table tabt
+c
+c  input  t
+c         x     table
+c         np    no of points in the table
+c
+c  output loc1   first location (lower)
+c         loc2   upper location (upper)
+*/
+void cEulerNumber::stloc(double t, float *x, short np, short *loc1, short *loc2) {
+    short i;
+
+    for ( i = 0; i < np; i++)
+    {
+        if(  t <= x[i] )
+        {
+            *loc2 = i;
+            *loc1 = *loc2 - 1;
+            if( *loc2 <= 0 )
+            {
+                *loc2 = 1;
+                *loc1 = 0;
+            }
+            return;
+        }
+
+        if( i > 1 && x[i] ==  0. )
+        {
+            //  If x shows decreasing
+            if( x[i] < x[i-1] )
+            {
+                *loc2 = i - 1;
+                *loc1 = i - 2;
+                return;
+            }
+        }
+    }
+
+    *loc2 = np - 1 ;
+    *loc1 = np - 2 ;
+    return;
 }
 
 int main()
