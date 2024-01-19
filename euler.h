@@ -17,6 +17,7 @@ public:
 
     float eulerNumberCalculation(float Re);
     bool checkBoundary(float Re);
+    void testValues(int highestNumber);
 
 private:
     float calculate_a();
