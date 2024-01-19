@@ -734,6 +734,12 @@ float cEulerNumber::eulerNumberCalculation(float Re){
 
         //calculate Eu
         float k1 = k1Staggered(a, b, Re);
+        std::cout << "\nk1:\n";
+        std::cout << k1;
+        std::cout << "\n";
+        std::cout << "\nEu_k1:\n";
+        std::cout << Eu_k1;
+        std::cout << "\n";
         Eu = Eu_k1*k1;
     }
     if (m_pattern == SQUARE || m_pattern == TRIANG60) //calculate for square.
@@ -757,6 +763,12 @@ float cEulerNumber::eulerNumberCalculation(float Re){
         slin(b, 4, bValuesPointer, Euk1ValuesPointer, &Euk1);
         k1 = k1Square(a, b, Re);
         Eu = Euk1*k1;
+        std::cout << "\nk1:\n";
+        std::cout << k1;
+        std::cout << "\n";
+        std::cout << "\nEu_k1:\n";
+        std::cout << Euk1;
+        std::cout << "\n";
     }
     return Eu;
 }
@@ -1287,9 +1299,11 @@ void cEulerNumber::stloc(double t, float *x, short np, short *loc1, short *loc2)
 
 int main()
 {
-    cEulerNumber myEuler(3, 1.0608, 1); //square
+    cEulerNumber myEuler(3, 1.414, 1);
     float bruh =  myEuler.eulerNumberCalculation(100000);
     std::cout << "\neuler:\n";
+    std::cout << bruh;
     std::cout << "\n";
+    std::cout << "\nboundary:\n";
     std::cout << myEuler.checkBoundary(100000);
 };
