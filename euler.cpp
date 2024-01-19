@@ -1291,4 +1291,6 @@ int main()
 {
     cEulerNumber myEuler(2, 2, 1); //square
     std::cout << myEuler.eulerNumberCalculation(1000000);
+    std::cout << "\n";
+    std::cout << myEuler.checkBoundary(1000000);
 };
