@@ -1083,18 +1083,12 @@ float cEulerNumber::k1Staggered(float a, float b, float Re)
     return k1;
 }
 
-/*
-
+/**
 c   linear interpolation
-
 c
-
 c   input : (x1,y1),(x2,y2) as two fixed points
-
 c           x point
-
 c   output  y as value at point  x
-
 */
 void cEulerNumber::lfit(double x1, double y1, double x2, double y2, double x, float *y)
 {
@@ -1111,23 +1105,14 @@ void cEulerNumber::lfit(double x1, double y1, double x2, double y2, double x, fl
 }
 
 /**
-
 c  Linear table interpolation
-
 c
-
 c  input   xi    value of x where y is desired
-
 c          ncp   no of points in table
-
 c          x     x cordinate
-
 c          y     y cordinate
-
 c
-
 c  output  yi    y value at poshort xi
-
 */
 void cEulerNumber::slin(double xi, short ncp, float *x, float *y, float *yi){
 
@@ -1154,23 +1139,14 @@ void cEulerNumber::slin(double xi, short ncp, float *x, float *y, float *yi){
 }
 
 /**
-
 c   A general interpolation routine
-
 c   input : np = # of points in the input curve
-
 c           xaxis = x-axis poshort values in curve
-
 c           yaxis = y-axis poshort values in curve
-
 c           xin =   x poshort value at which y is desired
-
 c   ouput:  yout =   desired y value
-
 c
-
 c   Note : any x value outside the range will be linearly interpolated
-
 */
 void cEulerNumber::quafit(double xin, float *yout, short np, float *xaxis, float *yaxis)
 {
