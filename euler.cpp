@@ -1,6 +1,4 @@
-#include <iostream>
 #include "euler.h"
-#include <cmath>
 
 /*!
  * \brief Reynold's number x axis points for staggered tube bundles where
@@ -857,7 +855,6 @@ float cEulerNumber::calculate_b()
     return b;
 }
 
-// TODO: revise desc
 /*!
  * \brief Returns a boolean describing whether the calculation of euler number for Bell
  * method pressure drop in heat exchangers for square tubes extrapolates from current data.

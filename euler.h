@@ -1,5 +1,7 @@
 #ifndef EULER_K1_CALC_EULER_H
 #define EULER_K1_CALC_EULER_H
+#include <iostream>
+#include <cmath>
 
 /*!
  * \brief Implementation of the Euler number calculator.
