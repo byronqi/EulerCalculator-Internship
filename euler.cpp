@@ -1315,8 +1315,43 @@ void cEulerNumber::stloc(double t, float *x, short np, short *loc1, short *loc2)
     return;
 }
 
+/**
+ * getter function for accessing k1Square in other methods
+ *
+ * @return k1Square
+ */
+float cEulerNumber::get_k1Square() {
+    return 0;
+}
 
+/**
+ * getter function for accessing k1Staggered in other methods
+ *
+ * @return k1Staggered
+ */
+float cEulerNumber::get_k1Staggered() {
+    return 0;
+}
 
+/**
+ * getter function for accessing (a) in other methods
+ *
+ * @return a
+ */
+float cEulerNumber::get_a() {
+    float a_calculated = calculate_a();
+    return a_calculated;
+}
+
+/**
+ * getter function for accessing (b) in other methods
+ *
+ * @return b
+ */
+float cEulerNumber::get_b() {
+    float b_calculated = calculate_b();
+    return b_calculated;
+}
 
 //int main()
 //{

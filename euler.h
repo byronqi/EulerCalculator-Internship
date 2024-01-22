@@ -17,6 +17,10 @@ public:
 
     float eulerNumberCalculation(float Re);
     int checkBoundary(float Re);
+    float get_k1Square();
+    float get_k1Staggered();
+    float get_a();
+    float get_b();
 
 private:
     float calculate_a();
