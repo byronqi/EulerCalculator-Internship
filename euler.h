@@ -17,8 +17,8 @@ public:
 
     float eulerNumberCalculation(float Re);
     int checkBoundary(float Re);
-    float get_k1Square();
-    float get_k1Staggered();
+    float k1Square(float a, float b, float Re);
+    float k1Staggered(float a, float b, float Re);
     float get_a();
     float get_b();
 
@@ -27,8 +27,6 @@ private:
     float calculate_b();
     int checkStaggeredBoundary(float a, float b, float Re);
     int checkSquareBoundary(float a, float b, float Re);
-    float k1Square(float a, float b, float Re);
-    float k1Staggered(float a, float b, float Re);
     void slin(double xi, short ncp, float *x, float *y, float *yi);
     void quafit(double xin, float *yout, short np, float *xaxis, float *yaxis);
     void lfit(double x1, double y1, double x2, double y2, double x, float *y);
