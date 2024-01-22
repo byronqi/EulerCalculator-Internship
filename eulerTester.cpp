@@ -33,9 +33,9 @@ int main(){
         dataSet_Squ45.push_back(myEulerSqu45.eulerNumberCalculation(float(i)));
          */
 
-        myEulerFile << i << ", " << myEulerTri.eulerNumberCalculation(float (i)) << ", " << myEulerTri.checkBoundary(float (i)) << ", " << myEulerTri.k1Staggered(myEulerTri.get_a(), myEulerTri.get_b(), float (i)) << ", " << myEulerTri.get_a() << ", " << myEulerTri.get_b() << ", "
-                    << i << ", " << myEulerTri60.eulerNumberCalculation(float (i)) << ", " << myEulerTri60.checkBoundary(float (i)) << ", " << myEulerTri60.k1Staggered(myEulerTri60.get_a(), myEulerTri60.get_b(), float (i)) << ", " << myEulerTri60.get_a() << ", " << myEulerTri60.get_b() << ", "
-                    << i << ", " << myEulerSqu.eulerNumberCalculation(float (i)) << ", "<< myEulerSqu.checkBoundary(float (i)) << ", " << myEulerSqu.k1Square(myEulerSqu.get_a(), myEulerSqu.get_b(), float (i)) << ", " << myEulerSqu.get_a() << ", " << myEulerSqu.get_b() << ", "
+        myEulerFile << i << ", " << myEulerTri.eulerNumberCalculation(float (i)) << ", " << myEulerTri.checkBoundary(float (i)) << ", " << myEulerTri.k1Staggered(myEulerTri.get_a(), myEulerTri.get_b(), float (i)) << ", " << myEulerTri.get_a() << ", " << myEulerTri.get_b() << ", " << " " << ", "
+                    << i << ", " << myEulerTri60.eulerNumberCalculation(float (i)) << ", " << myEulerTri60.checkBoundary(float (i)) << ", " << myEulerTri60.k1Staggered(myEulerTri60.get_a(), myEulerTri60.get_b(), float (i)) << ", " << myEulerTri60.get_a() << ", " << myEulerTri60.get_b() << ", " << " " << ", "
+                    << i << ", " << myEulerSqu.eulerNumberCalculation(float (i)) << ", "<< myEulerSqu.checkBoundary(float (i)) << ", " << myEulerSqu.k1Square(myEulerSqu.get_a(), myEulerSqu.get_b(), float (i)) << ", " << myEulerSqu.get_a() << ", " << myEulerSqu.get_b() << ", " << " " << ", "
                     << i << ", " << myEulerSqu45.eulerNumberCalculation(float(i)) << ", "<< myEulerSqu45.checkBoundary(float (i)) << ", " << myEulerSqu45.k1Square(myEulerSqu45.get_a(), myEulerSqu45.get_b(), float (i)) << ", " << myEulerSqu45.get_a() << ", " << myEulerSqu45.get_b() << "\n";
 
         if (counter == 10) {
