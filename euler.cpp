@@ -783,16 +783,16 @@ float cEulerNumber::eulerNumberCalculation(float Re){
  * \see k1Square
  * \see k1Staggered
  */
-bool cEulerNumber::checkBoundary(float Re)
+int cEulerNumber::checkBoundary(float Re)
 {
     float checkBoundary_A = calculate_a();
     float checkBoundary_B = calculate_b();
-    bool returnValue;
+    int returnValue;
     if (m_pattern == TRIANGULAR || m_pattern == SQUARE45){
         returnValue = checkStaggeredBoundary(checkBoundary_A, checkBoundary_B, Re);
     }
     if (m_pattern == SQUARE || m_pattern == TRIANG60){
-        returnValue = checkSquareBoundary(checkBoundary_B, Re);
+        returnValue = checkSquareBoundary(checkBoundary_A, checkBoundary_B, Re);
     }
     return returnValue;
 }
@@ -915,33 +915,47 @@ float cEulerNumber::calculate_b()
  * \see eulerNumberCalculation
  * \see k1Square
  */
-bool cEulerNumber::checkSquareBoundary(float b, float Re){
-    bool returnValue = true;
-    //Checking for (a-1)(b-1) vs. k1 graph (there are no limits specifically stated in formulas)
-    if (Re < 1000){
-        returnValue = false;
-    }
-    if (Re > 10000000){
-        returnValue = false;
+int cEulerNumber::checkSquareBoundary(float a, float b, float Re){
+    int returnValue = 1;
+
+    //checking if (a-1)/(b-1) is negative or undefined, if pitch or diameter
+    // is negative or zero, and if pitch < diameter
+    if (b <= 1 || m_diameter <= 0 || m_pitch <= 0 || m_pitch < m_diameter)
+    {
+        returnValue = -1;
     }
 
-    //checking for Re vs Eu/k1 graph (square does not need "a" to calculate boundaries)
+    //checking if k1 is 0 or negative
+    if (1.004f* pow((a-1)/(b-1), -0.539) <= 0 || 1.218f - (0.297f*(a-1)/(b-1)) + (0.0265* pow((a-1)/(b-1), 2)) <= 0)
+    {
+        return -1;
+    }
+
+    //Checking for (a-1)(b-1) vs. k1 graph (there are no limits specifically stated in formulas)
+    if (Re < 1000){
+        returnValue = 0;
+    }
+    if (Re > 10000000){
+        returnValue = 0;
+    }
+
+    //checking for Re vs Eu/k1 graph
     if (b < 1.25){
-        returnValue = false;
+        returnValue = 0;
     }
     else if (b <= 1.5){
         if (Re <= 3 || Re >= 2000000){
-            returnValue = false;
+            returnValue = 0;
         }
     }
     else if (b <= 2){
         if (Re <= 7 || Re >= 2000000){
-            returnValue = false;
+            returnValue = 0;
         }
     }
     else if (b <= 2.5){
         if (Re <= 600 || Re >= 200000){
-            returnValue = false;
+            returnValue = 0;
         }
     }
     return returnValue;
@@ -965,70 +979,77 @@ bool cEulerNumber::checkSquareBoundary(float b, float Re){
  * \see eulerNumberCalculation
  * \see k1Staggered
  */
-bool cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
+int cEulerNumber::checkStaggeredBoundary(float a, float b, float Re){
     float abValue = a / b;
-    bool return_value = true;
+    int return_value = 1;
     //Checking for a/b vs. k1 graph:
     if(Re < 100)
     {
         if (abValue >= 1.25 || abValue <= 0.5)
         {
-            return_value = false;
+            return_value = 0;
         }
     }
     else if (Re <= 1000)
     {
         if (abValue <= 0.5 || abValue >= 3.5)
         {
-            return_value = false;
+            return_value = 0;
         }
     }
     else if (Re <= 1000000)
     {
         if (abValue <= 0.45 || abValue >= 3.5)
         {
-            return_value = false;
+            return_value = 0;
         }
     }
     else
     {
-        return_value = false;
+        return_value = 0;
     }
 
     //checking for Re vs Eu/k1 graph:
+    //checking if (a-1)/(b-1) is negative or undefined, if pitch or diameter
+    // is negative or zero, and if pitch < diameter
+    if (b <= 0 || m_diameter <= 0 || m_pitch <= 0 || m_pitch < m_diameter)
+    {
+        return_value = -1;
+    }
+
     if(a < 1.25)
     {
-        return_value = false;
+        return_value = 0;
     }
     else if(a <= 1.5)
     {
         if(Re < 3)
         {
-            return_value = false;
+            return_value = 0;
         }
     }
     else if(a <= 2)
     {
         if(Re < 7)
         {
-            return_value = false;
+            return_value = 0;
         }
     }
     else if(a <= 2.5)
     {
         if(Re < 100)
         {
-            return_value = false;
+            return_value = 0;
         }
     }
     else
     {
-        return_value = false;
+        return_value = 0;
     }
 
     if(Re > 2000000)
     {
-        return_value = false;
+        return_value = 0;
     }
     return return_value;
 }
