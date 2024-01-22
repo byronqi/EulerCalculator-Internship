@@ -797,33 +797,6 @@ int cEulerNumber::checkBoundary(float Re)
     return returnValue;
 }
 
-void cEulerNumber::testValues(int highestPower)
-{
-    int num = 5*highestPower + 1;
-    float inputs[num];
-    memset( inputs, 0, num*sizeof(float) );
-    int counter = 0;
-
-    for (int i = 0; i < highestPower; i++)
-    {
-        inputs[counter] = pow(10, i);
-        counter ++;
-        for (int j = 2; j < 10; j= j + 2)
-        {
-            inputs[counter] = j*pow(10, i);
-            counter ++;
-        }
-    }
-    std::cout << "\n";
-    inputs[counter] = pow(10, highestPower);
-
-    for (float f : inputs)
-    {
-        std::cout << "\n";
-        std::cout << f;
-    }
-}
-
 /*!
  * \brief Returns the transverse pitch ratio (a) depending on tube pattern
  * \ingroup htxr
