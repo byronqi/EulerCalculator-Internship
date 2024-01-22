@@ -16,13 +16,14 @@ public:
     cEulerNumber(int pattern, float pitch, float diameter); // class declaration
 
     float eulerNumberCalculation(float Re);
-    bool checkBoundary(float Re);
+    int checkBoundary(float Re);
+    void testValues(int highestNumber);
 
 private:
     float calculate_a();
     float calculate_b();
-    bool checkStaggeredBoundary(float a, float b, float Re);
-    bool checkSquareBoundary(float b, float Re);
+    int checkStaggeredBoundary(float a, float b, float Re);
+    int checkSquareBoundary(float a, float b, float Re);
     float k1Square(float a, float b, float Re);
     float k1Staggered(float a, float b, float Re);
     void slin(double xi, short ncp, float *x, float *y, float *yi);
