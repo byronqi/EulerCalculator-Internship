@@ -1317,16 +1317,14 @@ void cEulerNumber::stloc(double t, float *x, short np, short *loc1, short *loc2)
 
 
 
-/*
-int main()
-{
-    cEulerNumber myEuler(3, 1.414, 1);
+
+//int main()
+//{
+//    cEulerNumber myEuler(3, 1.0608, 1);
 //    float bruh =  myEuler.eulerNumberCalculation(100000);
 //    std::cout << "\neuler:\n";
 //    std::cout << bruh;
 //    std::cout << "\n";
 //    std::cout << "\nboundary:\n";
 //    std::cout << myEuler.checkBoundary(100000);
-    myEuler.testValues(6);
-};
-*/
+//};
