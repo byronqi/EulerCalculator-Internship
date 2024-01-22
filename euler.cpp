@@ -1282,6 +1282,7 @@ void cEulerNumber::stloc(double t, float *x, short np, short *loc1, short *loc2)
     return;
 }
 
+/*
 int main()
 {
     cEulerNumber myEuler(3, 1.0608, 1); //square
@@ -1290,3 +1291,4 @@ int main()
     std::cout << "\n";
     std::cout << myEuler.checkBoundary(100000);
 };
+*/
