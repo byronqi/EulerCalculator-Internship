@@ -732,12 +732,13 @@ float cEulerNumber::eulerNumberCalculation(float Re){
 
         //calculate Eu
         float k1 = k1Staggered(a, b, Re);
-        std::cout << "\nk1:\n";
-        std::cout << k1;
-        std::cout << "\n";
-        std::cout << "\nEu_k1:\n";
-        std::cout << Eu_k1;
-        std::cout << "\n";
+        // Statements for debugging
+        // std::cout << "\nk1:\n";
+        // std::cout << k1;
+        // std::cout << "\n";
+        // std::cout << "\nEu_k1:\n";
+        // std::cout << Eu_k1;
+        // std::cout << "\n";
         Eu = Eu_k1*k1;
     }
     if (m_pattern == SQUARE || m_pattern == TRIANG60) //calculate for square.
@@ -761,12 +762,13 @@ float cEulerNumber::eulerNumberCalculation(float Re){
         slin(b, 4, bValuesPointer, Euk1ValuesPointer, &Euk1);
         k1 = k1Square(a, b, Re);
         Eu = Euk1*k1;
-        std::cout << "\nk1:\n";
-        std::cout << k1;
-        std::cout << "\n";
-        std::cout << "\nEu_k1:\n";
-        std::cout << Euk1;
-        std::cout << "\n";
+        // Statements for debugging
+        // std::cout << "\nk1:\n";
+        // std::cout << k1;
+        // std::cout << "\n";
+        // std::cout << "\nEu_k1:\n";
+        // std::cout << Euk1;
+        // std::cout << "\n";
     }
     return Eu;
 }
@@ -1144,9 +1146,9 @@ c  output  yi    y value at poshort xi
 */
 void cEulerNumber::slin(double xi, short ncp, float *x, float *y, float *yi){
 
-    short         loc1, loc2;
+    short loc1, loc2;
 
-    float   x1, x2, y1, y2, slope;
+    float x1, x2, y1, y2, slope;
 
     stloc(xi,x,ncp,&loc1,&loc2);
 
@@ -1335,6 +1337,7 @@ float cEulerNumber::get_b() {
     return b_calculated;
 }
 
+//Past debugging (delete if you choose to)
 //int main()
 //{
 //    cEulerNumber myEuler(3, 1.0608, 1);

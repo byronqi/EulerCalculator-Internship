@@ -15,6 +15,11 @@ vector<float> dataSet_Tri60;
 vector<float> dataSet_Squ;
 vector<float> dataSet_Squ45;
 
+/**
+ * \brief Main function for outputting a .csv file of all calculated values from the euler calculator.
+ *
+ * \see euler.cpp
+ */
 int main(){
     // csv file
     ofstream myEulerFile("../EulerData.csv"); // keep in mind this file gets updated every time
@@ -45,7 +50,6 @@ int main(){
         ++counter;
     }
     myEulerFile.close();
-    return 0;
 }
 
 
