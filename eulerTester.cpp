@@ -3,7 +3,7 @@
 # include "fstream"
 using namespace std;
 
-// Euler nums for all 4 pattern variations w/ fixed pitch & diameter
+// Euler nums for all 4 pattern variations w/ FIXED pitch & diameter
 cEulerNumber myEulerTri(TRIANGULAR, 1.5, 1);
 cEulerNumber myEulerTri60(TRIANG60, 1.5, 1);
 cEulerNumber myEulerSqu(SQUARE, 1.5, 1);
@@ -12,11 +12,16 @@ cEulerNumber myEulerSqu45(SQUARE45, 1.5, 1);
 /**
  * \brief Main function for outputting a .csv file of all calculated values from the euler calculator.
  *
+ * \note pitch and diameter are fixed values.
+ *  pitch = 1.5
+ *  diameter = 1
+ *
+ * \returns EulerData.csv (should be located in project directory)
  * \see euler.cpp
  */
 int main(){
     // csv file
-    ofstream myEulerFile("../EulerData.csv"); // keep in mind this file gets updated every time
+    ofstream myEulerFile("../EulerData.csv"); // FYI file gets updated every time the program runs
     myEulerFile << "* = extrapolated, 1 = in bounds, 0 = out of bounds (extrapolation), -1 = extreme extrapolation \n";
     myEulerFile << "Re, Tri_Eu, Tri_BoundsFlagged, Tri_k1, Tri_a, Tri_b, ,"
                    "Re, Tri60_Eu, Tri60_BoundsFlagged, Tri60_k1, Tri60_a, Tri60_b, ,"
@@ -39,5 +44,3 @@ int main(){
     }
     myEulerFile.close();
 }
-
-

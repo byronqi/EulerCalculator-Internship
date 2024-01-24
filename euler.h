@@ -5,7 +5,6 @@
 
 /*!
  * \brief Implementation of the Euler number calculator.
- *
  */
 class cEulerNumber
 {

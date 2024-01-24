@@ -1318,8 +1318,9 @@ void cEulerNumber::stloc(double t, float *x, short np, short *loc1, short *loc2)
 }
 
 /**
- * getter function for accessing (a) in other methods
+ * getter function for accessing (a) in other methods.
  *
+ * \see calculate_a
  * @return a
  */
 float cEulerNumber::get_a() {
@@ -1328,8 +1329,9 @@ float cEulerNumber::get_a() {
 }
 
 /**
- * getter function for accessing (b) in other methods
+ * getter function for accessing (b) in other methods.
  *
+ * \see calculate_b
  * @return b
  */
 float cEulerNumber::get_b() {
