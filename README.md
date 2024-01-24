@@ -8,5 +8,6 @@ Reynolds numbers from 1 to 1000000 (1E6) are accounted for. Anything beyond or b
 ### Files
 `euler.h` - header file for `euler.cpp`.\
 `euler.cpp` - code for the calculator.\
-`eulerTester.cpp` - test program that outputs all variables that are in relation to calculating  
+`eulerTester.cpp` - test program that outputs all variables that are in relation to calculating the Euler number.
 ***
+### Functions
